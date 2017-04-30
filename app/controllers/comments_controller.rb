@@ -9,11 +9,6 @@ class CommentsController < ApplicationController
     @comments = @product.comments
   end
 
-  # GET /products/1/comments/1
-  # GET /products/1/comments/1.json
-  def show
-  end
-
   # GET /products/1/comments/new
   def new
     @comment = Comment.new
@@ -35,7 +30,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to [@product, @comment], notice: 'Comment was successfully created.' }
+        format.html { redirect_to product_comments_path(@product), notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }
@@ -49,7 +44,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to [@product, @comment], notice: 'Comment was successfully updated.' }
+        format.html { redirect_to product_comments_path(@product), notice: 'Comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit }
