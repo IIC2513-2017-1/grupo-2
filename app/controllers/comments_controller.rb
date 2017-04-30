@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  before_action :set_user, only: [:new, :create]
+  # before_action :set_user, only: [:create]
   before_action :set_product
 
   # GET /products/1/comments
@@ -13,7 +13,6 @@ class CommentsController < ApplicationController
   def new
     @comment = Comment.new
     @comment.product = @product
-    @comment.user = @user
   end
 
   # GET /products/1/comments/1/edit
@@ -23,8 +22,9 @@ class CommentsController < ApplicationController
   # POST /products/1/comments
   # POST /products/1/comments.json
   def create
-    @comment = Comment.new(comment_params)
+    @comment = Comment.new({content: comment_params[:content]})
     @comment.product = @product
+    @user = User.find(comment_params[:user])
     @comment.user = @user
 
 
@@ -43,7 +43,7 @@ class CommentsController < ApplicationController
   # PATCH/PUT /products/1/comments/1.json
   def update
     respond_to do |format|
-      if @comment.update(comment_params)
+      if @comment.update({content: comment_params[:content], user_id: comment_params[:user]})
         format.html { redirect_to product_comments_path(@product), notice: 'Comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @comment }
       else
@@ -79,6 +79,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:content)
+      params.require(:comment).permit(:content, :user)
     end
 end
