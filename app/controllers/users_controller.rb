@@ -66,10 +66,17 @@ class UsersController < ApplicationController
   end
 
   def add_to_cart
-    @cart = Cart.new(amount: params[:cart][:amount],
-      user_id: params[:cart][:user_id], product_id: params[:product_id] )
+    # @cart = Cart.new(amount: params[:cart][:amount],
+    #   user_id: params[:cart][:user_id], product_id: params[:product_id] )
+    @cart = Cart.new(cart_params)
     @cart.save
-    redirect_to product_path(params[:product_id])
+    redirect_to cart_path(cart_params[:user_id])
+  end
+
+  def destroy_cart
+    @cart = Cart.find(params[:id])
+    @cart.destroy
+    redirect_to cart_path(params[:user_id])
   end
 
   private
@@ -83,7 +90,7 @@ class UsersController < ApplicationController
       params.require(:user).permit(:username, :password, :email, :password_confirmation)
     end
 
-    # def cart_params
-    #   params.require(:cart).permit(:user_id, :product_id, :amount)
-    # end
+    def cart_params
+      params.require(:cart).permit(:user_id, :product_id, :amount)
+    end
 end
