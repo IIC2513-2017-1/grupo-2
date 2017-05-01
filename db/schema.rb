@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20170430220629) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text     "content",    null: false
+    t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
@@ -50,10 +50,10 @@ ActiveRecord::Schema.define(version: 20170430220629) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.string   "name",        null: false
+    t.string   "name"
     t.text     "description"
-    t.integer  "price",       null: false
-    t.integer  "stock",       null: false
+    t.integer  "price"
+    t.integer  "stock"
     t.integer  "offer"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
