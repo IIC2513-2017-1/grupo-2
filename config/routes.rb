@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   get "/users/:id/cart", to: "users#show_cart", as: "cart"
-  post "/users/:id/cart", to: "users#add_to_cart", as: "update_cart"
+  post "/carts", to: "users#add_to_cart", as: "update_cart"
 
   get "/users/:user_id/purchases/:id", to: "purchases#show", as: "show_purchase"
   post "/users/:user_id/purchases", to: "purchases#create"

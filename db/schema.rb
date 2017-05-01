@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20170430220629) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text     "content"
+    t.text     "content",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
@@ -100,11 +100,11 @@ ActiveRecord::Schema.define(version: 20170430220629) do
   add_foreign_key "carts", "users"
   add_foreign_key "categories_products", "categories"
   add_foreign_key "categories_products", "products"
+  add_foreign_key "comments", "products"
+  add_foreign_key "comments", "users"
   add_foreign_key "purchase_products", "products"
   add_foreign_key "purchase_products", "purchases"
   add_foreign_key "purchases", "users"
   add_foreign_key "wishes", "products"
   add_foreign_key "wishes", "users"
-  add_foreign_key "comments", "products"
-  add_foreign_key "comments", "users"
 end

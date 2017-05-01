@@ -66,6 +66,10 @@ class UsersController < ApplicationController
   end
 
   def add_to_cart
+    @cart = Cart.new(amount: params[:cart][:amount],
+      user_id: params[:cart][:user_id], product_id: params[:product_id] )
+    @cart.save
+    redirect_to product_path(params[:product_id])
   end
 
   private
@@ -78,4 +82,8 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:username, :password, :email, :password_confirmation)
     end
+
+    # def cart_params
+    #   params.require(:cart).permit(:user_id, :product_id, :amount)
+    # end
 end
