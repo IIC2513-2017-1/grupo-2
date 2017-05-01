@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @product.price %>
+</p>
+
+<p>
+  <strong>Stock:</strong>
+  <%= @product.stock %>
+</p>
+
+<p>
+  <strong>Offer:</strong>
+  <%= @product.offer %>
+</p>
+
+<%= form_for(@cart, url: update_cart_path) do |f| %>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.select :user_id, User.all.collect { |user| [ user.username, user.id ] }, { include_blank: true }, { required: true } %>
+  </div>
+
+  <div class="field">
+    <%= f.label :amount %>
+    <%= f.number_field :amount %>
+  </div>
+
+  <div class="field">
+    <%= f.hidden_field :product_id, :value => @product.id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
+
+<%= link_to 'Comments', product_comments_path(@product)%> |
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>

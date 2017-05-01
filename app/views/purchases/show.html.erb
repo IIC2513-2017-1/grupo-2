@@ -1,0 +1,29 @@
+<h1>Purchase Details</h1>
+
+<table>
+  <thead>
+    <th>Product Name</th>
+    <th>Amount</th>
+    <th>Price</th>
+    <th>Total Price</th>
+  </thead>
+  <tbody>
+    <% @purchase.purchase_products.each do |pp| %>
+      <tr>
+        <td>
+          <%= link_to "#{pp.product.name}", product_path(pp.product) %>
+        </td>
+        <td>
+          <%= pp.amount %>
+        </td>
+        <td>
+          <%= pp.product.price %>
+        </td>
+        <td>
+          <%= pp.product.price * pp.amount %>
+        </td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>

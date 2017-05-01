@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @user.username %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<% if not @user.purchases.empty? %>
+  <table>
+    <thead>
+      <th>Number</th>
+      <th>Date</th>
+      <th>Products</th>
+      <th>Price</th>
+    </thead>
+    <tbody>
+      <% count = 0 %>
+      <% @user.purchases.each do |p| %>
+        <tr>
+          <td>
+            <%= link_to "#{count += 1}", show_purchase_path(@user, p) %>
+          </td>
+          <td>
+            <%= p.created_at %>
+          </td>
+          <td>
+            <%= p.nproducts %>
+          </td>
+          <td>
+            <%= p.get_total %>
+          </td>
+        </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+<% end %>
+
+
+<%= link_to 'Cart', cart_path(@user) %> |
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
