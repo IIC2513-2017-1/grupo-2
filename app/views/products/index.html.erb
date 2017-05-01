@@ -22,6 +22,7 @@
         <td><%= product.price %></td>
         <td><%= product.stock %></td>
         <td><%= product.offer %></td>
+        <!--  <td><%= link_to 'Add to cart', update_cart_path(id: 1, product: product) , method: :post%></td> -->
         <td><%= link_to 'Show', product %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>

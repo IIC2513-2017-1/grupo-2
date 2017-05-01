@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :show_cart]
 
   # GET /users
   # GET /users.json
@@ -59,6 +59,13 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def show_cart
+    render "carts/index"
+  end
+
+  def add_to_cart
   end
 
   private

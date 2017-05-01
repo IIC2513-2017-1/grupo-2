@@ -1,0 +1,33 @@
+<h1>Your Cart</h1>
+
+<table>
+  <thead>
+    <th>Product Name</th>
+    <th>Amount</th>
+    <th>Price</th>
+    <th>Total Price</th>
+  </thead>
+  <tbody>
+    <% @user.carts.each do |c| %>
+      <tr>
+        <td>
+          <%= link_to "#{c.product.name}", product_path(c.product) %>
+        </td>
+        <td>
+          <%= c.amount %>
+        </td>
+        <td>
+          <%= c.product.price %>
+        </td>
+        <td>
+          <%= c.product.price * c.amount %>
+        </td>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+<%= form_tag("/users/#{@user.id}/purchases", method: "POST") do %>
+  <%= submit_tag("Purchase Now!!!") %>
+<% end %>
