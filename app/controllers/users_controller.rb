@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :show_cart]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_current_user, only: :show_cart
 
   # GET /users
   # GET /users.json
@@ -62,7 +63,11 @@ class UsersController < ApplicationController
   end
 
   def show_cart
-    render "carts/index"
+    if current_user
+      render "carts/index"
+    else
+      redirect_to root_path, notice: "You must be signed in"
+    end
   end
 
   def add_to_cart
@@ -83,6 +88,10 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def set_current_user
+      @user = current_user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

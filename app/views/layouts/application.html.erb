@@ -17,8 +17,13 @@
       </div>
 
       <nav id="main-menu">
-        <%= link_to 'Users', users_path %>
+        <% if current_user && current_user.role.name == "admin" %>
+          <%= link_to 'Users', users_path %>
+        <% end %>
         <%= link_to 'Products', products_path %>
+        <% if current_user %>
+          <%= link_to 'Cart', cart_path %>
+        <% end %>
       </nav>
 
       <div id="user-bar">
@@ -40,7 +45,7 @@
     </main>
     <footer>
       <hr>
-      <div id="project">© Pioller 2017</div>
+      <div id="project">© Amazing 2017</div>
       <div id="license">
         <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
           <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"/>
