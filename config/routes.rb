@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :categories, :except => :show
   resources :users
+  resource :session, only: [:new, :create, :destroy]
   resources :products do
     resources :comments, :except => :show
   end
