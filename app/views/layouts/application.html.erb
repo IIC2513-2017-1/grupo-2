@@ -6,6 +6,9 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script src="https://use.fontawesome.com/5a0930898a.js"></script>
+
   </head>
 
   <body>
@@ -29,9 +32,19 @@
       <div id="user-bar">
         <% if current_user %>
           <div class="name">Welcome, <%= current_user.username %></div>
-          <%= link_to 'Logout', session_path, method: :delete %>
+          <%= link_to session_path, method: :delete do %>
+            <div id="logout">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+              <span>Logout</span>
+            </div>
+          <% end %>
         <% else %>
-          <%= link_to 'Login', new_session_path %>
+          <%= link_to new_session_path do %>
+            <div id="login">
+              <i class="fa fa-sign-in" aria-hidden="true"></i>
+              <span>Login</span>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </header>
