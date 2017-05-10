@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170430220629) do
+ActiveRecord::Schema.define(version: 20170510175147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,12 +78,20 @@ ActiveRecord::Schema.define(version: 20170430220629) do
     t.index ["user_id"], name: "index_purchases_on_user_id", using: :btree
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "password"
     t.string   "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "role_id"
+    t.index ["role_id"], name: "index_users_on_role_id", using: :btree
   end
 
   create_table "wishes", force: :cascade do |t|
@@ -105,6 +113,7 @@ ActiveRecord::Schema.define(version: 20170430220629) do
   add_foreign_key "purchase_products", "products"
   add_foreign_key "purchase_products", "purchases"
   add_foreign_key "purchases", "users"
+  add_foreign_key "users", "roles"
   add_foreign_key "wishes", "products"
   add_foreign_key "wishes", "users"
 end
