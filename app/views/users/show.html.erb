@@ -23,7 +23,7 @@
       <% @user.purchases.each do |p| %>
         <tr>
           <td>
-            <%= link_to "#{count += 1}", show_purchase_path(@user, p) %>
+            <%= link_to "#{count += 1}", p %>
           </td>
           <td>
             <%= p.created_at %>

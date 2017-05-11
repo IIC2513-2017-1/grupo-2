@@ -1,5 +1,9 @@
 class ProductsController < ApplicationController
+  include Registered
+
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in?, only: [:new, :edit, :create, :update, :destroy]
+  before_action :admin?, only: [:new, :edit, :create, :update, :destroy]
 
   # GET /products
   # GET /products.json

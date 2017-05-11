@@ -9,3 +9,7 @@
 ['user', 'admin'].each do |role|
   Role.find_or_create_by({name: role})
 end
+
+admin = User.new(username: "admin", email: "admin@admin.admin", password: "administrator", password_confirmation: "administrator")
+admin.role = Role.find_by_name("admin")
+admin.save

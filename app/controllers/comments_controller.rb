@@ -1,7 +1,9 @@
 class CommentsController < ApplicationController
+  include Registered
+
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  # before_action :set_user, only: [:create]
   before_action :set_product
+  before_action :logged_in?, only: [:new, :edit, :create, :update, :destroy]
 
   # GET /products/1/comments
   # GET /products/1/comments.json
@@ -17,16 +19,13 @@ class CommentsController < ApplicationController
 
   # GET /products/1/comments/1/edit
   def edit
+    permitted_user? params[:id]
   end
 
   # POST /products/1/comments
   # POST /products/1/comments.json
   def create
-    @comment = Comment.new({content: comment_params[:content]})
-    @comment.product = @product
-    @user = User.find(comment_params[:user])
-    @comment.user = @user
-
+    @comment = Comment.new(comment_params)
 
     respond_to do |format|
       if @comment.save
@@ -42,8 +41,10 @@ class CommentsController < ApplicationController
   # PATCH/PUT /products/1/comments/1
   # PATCH/PUT /products/1/comments/1.json
   def update
+    permitted_user? params[:id]
+
     respond_to do |format|
-      if @comment.update({content: comment_params[:content], user_id: comment_params[:user]})
+      if @comment.update(comment_params)
         format.html { redirect_to product_comments_path(@product), notice: 'Comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @comment }
       else
@@ -73,12 +74,8 @@ class CommentsController < ApplicationController
       @product = Product.find(params[:product_id])
     end
 
-    def set_user
-      @user = User.find(1)
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:content, :user)
+      params.require(:comment).permit(:content).merge(user_id: current_user.id)
     end
 end
