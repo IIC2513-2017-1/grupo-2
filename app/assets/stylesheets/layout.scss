@@ -8,6 +8,7 @@ body {
   color: #333;
   padding-top: 85px;
   background-color: #f5f8fa;
+  padding-bottom: 85px;
 }
 
 header {
@@ -22,11 +23,11 @@ header {
 }
 
 footer {
-  width: 90%;
   text-align: center;
-  position: absolute;
+  position: fixed;
   bottom: 0;
-  left: 5%;
+  width: 100%;
+  background: white;
 }
 
 main {

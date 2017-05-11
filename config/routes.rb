@@ -4,12 +4,10 @@ Rails.application.routes.draw do
   post "/carts", to: "users#add_to_cart", as: "update_cart"
   delete "/users/:user_id/cart/:id", to: "users#destroy_cart", as: "destroy_cart"
 
-  get "/users/:user_id/purchases/:id", to: "purchases#show", as: "show_purchase"
-  post "/users/:user_id/purchases", to: "purchases#create"
-
   resources :categories, :except => :show
   resources :users
   resource :session, only: [:new, :create, :destroy]
+  resources :purchases, only: [:show, :create]
   resources :products do
     resources :comments, :except => :show
   end

@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
+  include Registered
+
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :set_current_user, only: :show_cart
+  before_action :logged_in?, only: [:index, :show, :edit, :update, :destroy, :show_cart,
+                                    :add_to_cart, :destroy_cart]
+  before_action :admin?, only: [:index]
 
   # GET /users
   # GET /users.json
@@ -11,6 +16,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    same_user? @user
   end
 
   # GET /users/new
@@ -20,6 +26,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    same_user? @user
   end
 
   # POST /users
@@ -41,6 +48,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    same_user? @user
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -55,6 +63,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    same_user? @user
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
@@ -63,25 +72,21 @@ class UsersController < ApplicationController
   end
 
   def show_cart
-    if current_user
-      render "carts/index"
-    else
-      redirect_to root_path, notice: "You must be signed in"
-    end
+    render "carts/index"
   end
 
   def add_to_cart
-    # @cart = Cart.new(amount: params[:cart][:amount],
-    #   user_id: params[:cart][:user_id], product_id: params[:product_id] )
     @cart = Cart.new(cart_params)
+    same_user? @cart.user
     @cart.save
-    redirect_to cart_path(cart_params[:user_id])
+    redirect_to cart_path
   end
 
   def destroy_cart
     @cart = Cart.find(params[:id])
+    same_user? @cart.user
     @cart.destroy
-    redirect_to cart_path(params[:user_id])
+    redirect_to cart_path
   end
 
   private
@@ -100,6 +105,6 @@ class UsersController < ApplicationController
     end
 
     def cart_params
-      params.require(:cart).permit(:user_id, :product_id, :amount)
+      params.require(:cart).permit(:product_id, :amount).merge(user_id: current_user.id)
     end
 end

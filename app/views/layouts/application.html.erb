@@ -31,7 +31,7 @@
 
       <div id="user-bar">
         <% if current_user %>
-          <div class="name">Welcome, <%= current_user.username %></div>
+          <div class="name">Welcome, <%= link_to current_user.username, current_user %></div>
           <%= link_to session_path, method: :delete do %>
             <div id="logout">
               <i class="fa fa-sign-out" aria-hidden="true"></i>

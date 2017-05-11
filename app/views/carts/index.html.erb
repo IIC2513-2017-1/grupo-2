@@ -11,7 +11,7 @@
     <% @user.carts.each do |c| %>
       <tr>
         <td>
-          <%= link_to "#{c.product.name}", product_path(c.product) %>
+          <%= link_to "#{c.product.name}", c.product %>
         </td>
         <td>
           <%= c.amount %>
@@ -31,6 +31,6 @@
   </tbody>
 </table>
 
-<%= form_tag("/users/#{@user.id}/purchases", method: "POST") do %>
+<%= form_tag("/purchases", method: "POST") do %>
   <%= submit_tag("Purchase Now!!!") %>
 <% end %>

@@ -28,11 +28,6 @@
 <%= form_for(@cart, url: update_cart_path) do |f| %>
 
   <div class="field">
-    <%= f.label :user_id %>
-    <%= f.select :user_id, User.all.collect { |user| [ user.username, user.id ] }, { include_blank: true }, { required: true } %>
-  </div>
-
-  <div class="field">
     <%= f.label :amount %>
     <%= f.number_field :amount %>
   </div>
