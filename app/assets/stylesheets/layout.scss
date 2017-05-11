@@ -44,13 +44,18 @@ nav#main-menu, #logo {
 }
 
 nav#main-menu {
-  margin-left: 10px;
+  position: absolute;
+  top: 19px;
+  right: 30px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px 10px 10px 10px;
   a {
     padding: 20px;
     text-decoration: none;
     color: #555;
     font-size: 18px;
-    border-right: 1px solid #aaa;
+    border-left: 1px solid #aaa;
   }
   a:nth-child(2n) {
     color: #47737D;

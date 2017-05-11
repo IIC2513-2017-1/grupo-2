@@ -25,5 +25,7 @@
 
 <br>
 
-<%= link_to 'New Comment', new_product_comment_path(@product) %> |
+<% if current_user %>
+  <%= link_to 'New Comment', new_product_comment_path(@product) %> |
+<% end %>
 <%= link_to 'Back', @product %>
