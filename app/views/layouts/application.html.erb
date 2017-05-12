@@ -21,7 +21,12 @@
 
       <nav id="main-menu">
         <% if current_user && current_user.role.name == "admin" %>
-          <%= link_to 'Users', users_path %>
+          <%= link_to users_path do %>
+            <span id="users_index">
+              <i class="fa fa-users" aria-hidden="true"></i>
+              <span>Users</span>
+            </span>
+          <% end %>
         <% end %>
         <%= link_to products_path do %>
           <span id="shop">
