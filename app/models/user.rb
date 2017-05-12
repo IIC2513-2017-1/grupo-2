@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_secure_password
+
+
   before_validation :set_default_role
 
   has_many :purchases, dependent: :destroy
