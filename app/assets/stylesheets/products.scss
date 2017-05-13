@@ -107,3 +107,25 @@ form#new_comment {
 div.product-description {
   margin-bottom: 30px;
 }
+
+div.form {
+  text-align: center;
+  width: 50%;
+  border: 1px solid black;
+  padding: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  .form-title, .form-actions {
+    text-align: left;
+  }
+  textarea {
+    width: 80%;
+    height: 80px;
+  }
+  .paragraph-note {
+    margin-top: 0px;
+    padding-top: 0px;
+    font-style: italic;
+    color: red;
+  }
+}

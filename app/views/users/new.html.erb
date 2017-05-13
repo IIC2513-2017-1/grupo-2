@@ -1,5 +1,12 @@
-<h1>New User</h1>
+<div class="form">
+  <h1 class="form-title">New User</h1>
 
-<%= render 'form', user: @user %>
-
-<%= link_to 'Back', users_path %>
+  <%= render 'form', user: @user %>
+  <div class="form-actions">
+    <% if current_user && current_user.role.name == "admin" %>
+      <%= link_to 'Back', users_path, class: "form-action" %>
+    <% else %>
+      <%= link_to 'Back', root_path, class: "form-action" %>
+    <% end %>
+  </div>
+</div>
