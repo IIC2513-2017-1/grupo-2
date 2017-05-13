@@ -10,9 +10,9 @@
   Role.find_or_create_by({name: role})
 end
 
-Cart.destroy_all
 User.destroy_all
 Product.destroy_all
+Category.destroy_all
 
 admin = User.new(username: "admin", email: "admin@admin.admin", password: "administrator", password_confirmation: "administrator")
 admin.role = Role.find_by_name("admin")

@@ -5,13 +5,14 @@ class User < ApplicationRecord
   before_validation :set_default_role
 
   has_many :purchases, dependent: :destroy
-  has_many :carts
-  has_many :wishes
+  has_many :carts, dependent: :destroy
+  has_many :wishes, dependent: :destroy
   belongs_to :role
 
-  validates :username, :email, presence: true
+  validates :username, presence: true
   validates :username, :email, uniqueness: true
   validates :password, length: {in: 6..20}, confirmation: true
+  validates :email, presence: true, format: {with: /[\S]+@[\S]+\.[\S]+/}
 
 
   private
