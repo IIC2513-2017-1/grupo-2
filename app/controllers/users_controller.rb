@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Account created. You may now login.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -76,10 +76,15 @@ class UsersController < ApplicationController
   end
 
   def add_to_cart
+
     @cart = Cart.new(cart_params)
     same_user? @cart.user
-    @cart.save
-    redirect_to cart_path
+    if @cart.update_if_similar || @cart.save
+      redirect_to cart_path
+    else
+      redirect_to product_path(cart_params[:product_id]),
+        alert: "Amount must be specified and a positive whole number"
+    end
   end
 
   def destroy_cart

@@ -5,7 +5,9 @@
     <div class="grid-item-no-borders">
       <div class="grid-item-name">
         <span class="product-name"><strong><%= @product.name %></strong></span>
-        <% if current_user && current_user.role.name == "admin" %>
+      </div>
+      <% if current_user && current_user.role.name == "admin" %>
+        <div class="grid-item-actions">
           <span class="actions">
             <%= link_to edit_product_path(@product) do %>
              <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
@@ -14,8 +16,8 @@
              <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
             <% end %>
           </span>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
       <div class="grid-item-price">
         <p>$<%= @product.price %></p>
       </div>
@@ -43,8 +45,8 @@
 
         <% end %>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
 <div class="product-description">
   <%= @product.description %>
