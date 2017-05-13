@@ -17,7 +17,7 @@ header {
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
-  background: white;
+  background: rgb(27, 149, 224);
   border-bottom: 1px solid #aaa;
   box-shadow: 0px 0px 5px 1px #777;
 }
@@ -57,14 +57,11 @@ nav#main-menu {
     font-size: 18px;
     border-left: 1px solid #aaa;
   }
-  a:nth-child(2n) {
-    color: #47737D;
-  }
-  a:nth-child(2n+1) {
-    color: #14171a;
+  a {
+    color: black;
   }
   a:hover {
-    color: rgb(239, 255, 63);
+    color: rgb(255, 241, 69);
     background-color: rgb(27, 149, 224);
   }
 }

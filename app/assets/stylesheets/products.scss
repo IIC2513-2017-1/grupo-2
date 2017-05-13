@@ -1,3 +1,133 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+[class*='col'] {
+  float: left;
+}
+
+.col-1-3 {
+  text-align: center;
+  width: 33.33%;
+}
+
+.col {
+  text-align: center;
+}
+
+.grid-item {
+  margin: 2%;
+  margin-bottom: 4%;
+  padding: 2%;
+  border: 1px solid;
+  span.actions a {
+    text-decoration: none;
+    color: grey;
+    padding: 4px;
+  }
+  span.actions a:hover {
+    text-decoration: none;
+    color: black;
+    background: white;
+  }
+  div.grid-item-price, div.grid-item-stock {
+    width: 50%;
+    float: left;
+    padding-bottom: 33px;
+  }
+}
+
+.grid-item-no-borders {
+  vertical-align: middle;
+  width: 200px;
+  height: 80px;
+  span.product-name {
+    font-size: 200%;
+    margin-bottom: 30px;
+  }
+  span.actions a {
+    text-decoration: none;
+    color: grey;
+    padding: 4px;
+  }
+  span.actions a:hover {
+    text-decoration: none;
+    color: black;
+    background: white;
+  }
+  div.grid-item-price, div.grid-item-stock {
+    width: 50%;
+    float: left;
+    margin-top: 10px;
+  }
+  p {
+    padding: 0px;
+    margin: 0px;
+  }
+}
+
+.grid-item-no-borders:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.grid:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+form#new_comment:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+input[type=submit] {
+  padding: 5px 15px;
+  background: rgb(255, 241, 69);
+  border: 1px solid grey;
+  cursor: pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+input[type=submit]:hover {
+  background: rgb(235, 221, 49);
+}
+
+label {
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+div.field {
+  textarea {
+    width: 100%;
+    height: 100px;
+  }
+}
+
+form#new_comment {
+  width: 50%;
+  div.actions input[type=submit] {
+    float: right;
+  }
+}
+
+div.product-description {
+  margin-bottom: 30px;
+}
+
+table.comments {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 30px;
+  td, th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+  }
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+}

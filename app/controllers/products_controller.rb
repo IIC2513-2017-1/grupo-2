@@ -15,6 +15,8 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @cart = Cart.new
+    @comments = @product.comments
+    @comment = Comment.new
   end
 
   # GET /products/new

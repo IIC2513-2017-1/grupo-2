@@ -26,10 +26,11 @@ class CommentsController < ApplicationController
   # POST /products/1/comments.json
   def create
     @comment = Comment.new(comment_params)
+    @comment.product = @product
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to product_comments_path(@product), notice: 'Comment was successfully created.' }
+        format.html { redirect_to product_path(@product), notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }
