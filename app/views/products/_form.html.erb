@@ -18,8 +18,8 @@
 
   <div class="field">
     <%= f.label :categories %>
-    <%= f.collection_select(:categories, Category.all, :id, :name, {}, {multiple: true}) %>
-    Hold down the Ctrl (windows) / Command (Mac) button to select multiple options.
+    <%= f.collection_select(:categories, Category.all, :id, :name, {selected: product.categories.pluck(:id)}, {multiple: true, size: "10%"}) %>
+    Hold down the Ctrl (windows) / Command (Mac) key to select multiple options.
   </div>
 
   <div class="field">
