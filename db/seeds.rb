@@ -10,6 +10,7 @@
   Role.find_or_create_by({name: role})
 end
 
+Comment.destroy_all
 User.destroy_all
 Product.destroy_all
 Category.destroy_all
