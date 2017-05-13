@@ -1,50 +1,73 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
-
-<p>
-  <strong>Stock:</strong>
-  <%= @product.stock %>
-</p>
-
-<p>
-  <strong>Offer:</strong>
-  <%= @product.offer %>
-</p>
-
-<% if current_user %>
-  <%= form_for(@cart, url: update_cart_path) do |f| %>
-
-    <div class="field">
-      <%= f.label :amount %>
-      <%= f.number_field :amount %>
+<div class="grid">
+  <div class="col">
+    <div class="grid-item-no-borders">
+      <div class="grid-item-name">
+        <span class="product-name"><strong><%= @product.name %></strong></span>
+        <% if current_user && current_user.role.name == "admin" %>
+          <span class="actions">
+            <%= link_to edit_product_path(@product) do %>
+             <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+            <% end %>
+            <%= link_to @product, method: :delete, data: { confirm: 'Are you sure?' }  do %>
+             <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+            <% end %>
+          </span>
+        <% end %>
+      </div>
+      <div class="grid-item-price">
+        <p>$<%= @product.price %></p>
+      </div>
+      <div class="grid-item-stock">
+        <p>Stock: <%= @product.stock %></p>
+      </div>
     </div>
+  </div>
+  <% if current_user %>
+    <div class="col">
+      <div class="grid-item-no-borders">
+        <%= form_for(@cart, url: update_cart_path) do |f| %>
 
-    <div class="field">
-      <%= f.hidden_field :product_id, :value => @product.id %>
+          <div class="field">
+            <%= f.number_field :amount %>
+          </div>
+
+          <div class="field">
+            <%= f.hidden_field :product_id, :value => @product.id %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Add to Cart" %>
+          </div>
+
+        <% end %>
+      </div>
     </div>
-
-    <div class="actions">
-      <%= f.submit "Add to Cart" %>
-    </div>
-
   <% end %>
+</div>
+<div class="product-description">
+  <%= @product.description %>
+</div>
+<% if @comments.size > 0 %>
+  <table class="comments">
+    <tr>
+      <th>Comment</th>
+      <th>User</th>
+    </tr>
+    <% @comments.each do |c| %>
+      <tr>
+        <td><%= c.content %></td>
+        <td><%= c.user.username %></td>
+      </tr>
+    <% end %>
+  </table>
 <% end %>
 
-<%= link_to 'Comments', product_comments_path(@product)%> |
+<% if current_user %>
+  <%= render 'comment_form', {comment: @comment, product: @product} %>
+<% end %>
+
 <% if current_user && current_user.role.name == "admin" %>
   <%= link_to 'Edit', edit_product_path(@product) %> |
 <% end %>

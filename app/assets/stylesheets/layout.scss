@@ -17,7 +17,7 @@ header {
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
-  background: white;
+  background: rgb(27, 149, 224);
   border-bottom: 1px solid #aaa;
   box-shadow: 0px 0px 5px 1px #777;
 }
@@ -61,8 +61,8 @@ nav#main-menu {
     color: black;
   }
   a:hover {
-    color: rgb(27, 149, 224);
-    background-color: rgb(239, 255, 63);
+    color: rgb(255, 241, 69);
+    background-color: rgb(27, 149, 224);
   }
 }
 
@@ -85,41 +85,4 @@ nav#main-menu {
   padding: 5px;
   display: inline-block;
   vertical-align: middle;
-}
-
-[class*='col-'] {
-  float: left;
-}
-
-.col-1-3 {
-  text-align: center;
-  width: 33.33%;
-}
-
-.grid-item {
-  margin: 2%;
-  margin-bottom: 4%;
-  padding: 2%;
-  border: 1px solid;
-  span.actions a {
-    text-decoration: none;
-    color: grey;
-    padding: 4px;
-  }
-  span.actions a:hover {
-    text-decoration: none;
-    color: black;
-    background: white;
-  }
-  div.grid-item-price, div.grid-item-stock {
-    width: 50%;
-    float: left;
-    padding-bottom: 33px;
-  }
-}
-
-.grid:after {
-  content: "";
-  display: table;
-  clear: both;
 }
