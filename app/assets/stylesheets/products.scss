@@ -38,11 +38,14 @@
 
 .grid-item-no-borders {
   vertical-align: middle;
-  width: 200px;
+  width: 350px;
   height: 80px;
+  padding-bottom: 30px;
+  div.grid-item-name {
+    padding-bottom: 10px;
+  }
   span.product-name {
     font-size: 200%;
-    margin-bottom: 30px;
   }
   span.actions a {
     text-decoration: none;
@@ -57,7 +60,6 @@
   div.grid-item-price, div.grid-item-stock {
     width: 50%;
     float: left;
-    margin-top: 10px;
   }
   p {
     padding: 0px;
@@ -81,18 +83,6 @@ form#new_comment:after {
   content: "";
   display: table;
   clear: both;
-}
-
-input[type=submit] {
-  padding: 5px 15px;
-  background: rgb(255, 241, 69);
-  border: 1px solid grey;
-  cursor: pointer;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-}
-input[type=submit]:hover {
-  background: rgb(235, 221, 49);
 }
 
 label {
