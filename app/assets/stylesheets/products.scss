@@ -107,17 +107,3 @@ form#new_comment {
 div.product-description {
   margin-bottom: 30px;
 }
-
-table.comments {
-  border-collapse: collapse;
-  width: 100%;
-  margin-bottom: 30px;
-  td, th {
-    border: 1px solid black;
-    text-align: left;
-    padding: 8px;
-  }
-  tr:nth-child(even) {
-    background-color: #dddddd;
-  }
-}

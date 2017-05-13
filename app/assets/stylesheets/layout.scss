@@ -17,7 +17,7 @@ header {
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
-  background: rgb(27, 149, 224);
+  background: rgb(30, 34, 48);
   border-bottom: 1px solid #aaa;
   box-shadow: 0px 0px 5px 1px #777;
 }
@@ -41,6 +41,9 @@ main {
 nav#main-menu, #logo {
   display: inline-block;
   vertical-align: middle;
+  a:hover {
+    background: rgb(30, 34, 48);
+  }
 }
 
 nav#main-menu {
@@ -53,16 +56,16 @@ nav#main-menu {
   a {
     padding: 20px;
     text-decoration: none;
-    color: #555;
+    color: white;
     font-size: 18px;
     border-left: 1px solid #aaa;
   }
   a {
-    color: black;
+    color: white;
   }
   a:hover {
     color: rgb(255, 241, 69);
-    background-color: rgb(27, 149, 224);
+    background: rgb(30, 34, 48);
   }
 }
 
