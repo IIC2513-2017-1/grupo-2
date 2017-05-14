@@ -64,6 +64,16 @@ table {
     text-align: left;
     padding: 8px;
   }
+  td a.table-link {
+      color: blue;
+      background: none;
+      text-decoration: none;
+  }
+  td a.table-link:hover {
+      color: orange;
+      background: none;
+      text-decoration: none;
+  }
   td.actions, th.actions {
     border: none;
     background: white;

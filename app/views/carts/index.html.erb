@@ -11,7 +11,7 @@
       <% @user.carts.each do |c| %>
         <tr>
           <td>
-            <%= link_to "#{c.product.name}", c.product %>
+            <%= link_to "#{c.product.name}", c.product, class: "table-link" %>
           </td>
           <td>
             <%= c.amount %>
