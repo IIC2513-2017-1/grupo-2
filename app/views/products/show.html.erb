@@ -59,6 +59,18 @@
       <tr>
         <td><%= c.content %></td>
         <td><%= c.user.username %></td>
+        <% if (current_user && (current_user.role.name == "admin" || current_user.id == c.user.id)) %>
+          <td class="actions">
+            <%= link_to edit_product_comment_path(c.product, c) do %>
+              <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+            <% end %>
+          </td>
+          <td class="actions">
+            <%= link_to [c.product, c], method: :delete, data: { confirm: 'Are you sure?' }  do %>
+             <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+            <% end %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </table>

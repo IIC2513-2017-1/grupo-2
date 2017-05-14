@@ -2,7 +2,8 @@ class PurchasesController < ApplicationController
   include Registered
 
   before_action :logged_in?
-  before_action :set_purchase, only: [:show]
+  before_action :admin?, only: [:destroy]
+  before_action :set_purchase, only: [:show, :destroy]
   before_action :set_current_user, only: [:create]
 
   def show
@@ -30,6 +31,13 @@ class PurchasesController < ApplicationController
       @purchase.destroy
     end
     redirect_to @user
+  end
+
+  def destroy
+    user = @purchase.user
+    @purchase.purchase_products.destroy_all
+    @purchase.destroy
+    redirect_to user
   end
 
   private

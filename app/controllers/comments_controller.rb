@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
 
   # GET /products/1/comments/1/edit
   def edit
-    permitted_user? params[:id]
+    permitted_user? @comment
   end
 
   # POST /products/1/comments
@@ -42,11 +42,11 @@ class CommentsController < ApplicationController
   # PATCH/PUT /products/1/comments/1
   # PATCH/PUT /products/1/comments/1.json
   def update
-    permitted_user? params[:id]
+    permitted_user? @comment
 
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to product_comments_path(@product), notice: 'Comment was successfully updated.' }
+        format.html { redirect_to @product, notice: 'Comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit }
@@ -60,7 +60,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to product_comments_url(@product), notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to @product, notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

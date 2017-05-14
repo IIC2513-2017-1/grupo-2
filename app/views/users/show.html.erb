@@ -1,7 +1,7 @@
 <h1>
   <strong>Welcome, <%= @user.username %> (<%= @user.email %>)!</strong>
   <span class="actions">
-    <% if not current_user.role.name == "admin" %>
+    <% if (not current_user.role.name == "admin") or current_user.id == @user.id %>
       <%= link_to cart_path do %>
         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
       <% end %>
@@ -37,12 +37,19 @@
           <td>
             <%= p.get_total %>
           </td>
+          <% if current_user.role.name == "admin" %>
+            <td class="actions">
+              <%= link_to p, method: :delete, data: { confirm: 'Are you sure?' }  do %>
+               <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+              <% end %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
 
     </tbody>
   </table>
-<% elsif not current_user.role.name == "admin" %>
+<% elsif (not current_user.role.name == "admin") or current_user.id == @user.id %>
   <p>You have not purchased anything, go <%= link_to "shop", products_path, class: "inline-link" %> now!</p>
 <% else %>
   <p>This user has not purchased anything yet.</p>
