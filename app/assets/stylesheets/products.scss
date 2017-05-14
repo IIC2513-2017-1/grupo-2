@@ -61,6 +61,7 @@
     width: 50%;
     float: left;
   }
+
   p {
     padding: 0px;
     margin: 0px;
@@ -127,5 +128,13 @@ div.form {
     padding-top: 0px;
     font-style: italic;
     color: red;
+  }
+}
+
+div.categories {
+  li.category-link {
+    float: left;
+    list-style: none;
+    padding-left: 5%;
   }
 }
