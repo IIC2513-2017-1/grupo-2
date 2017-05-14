@@ -24,46 +24,46 @@
           <%= link_to users_path do %>
             <span id="users_index">
               <i class="fa fa-users" aria-hidden="true"></i>
-              <span>Users</span>
+              <span><strong>Users</strong></span>
             </span>
           <% end %>
         <% end %>
         <%= link_to products_path do %>
           <span id="shop">
             <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-            <span>Shop</span>
+            <span><strong>Shop</strong></span>
           </span>
         <% end %>
         <% if current_user %>
           <%= link_to current_user do %>
             <span id="profile">
               <i class="fa fa-user" aria-hidden="true"></i>
-              <span><%= current_user.username %></span>
+              <span><strong><%= current_user.username %></strong></span>
             </span>
           <% end %>
           <%= link_to cart_path do %>
             <span id="cart">
               <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-              <span>Cart</span>
+              <span><strong>Cart</strong></span>
             </span>
           <% end %>
           <%= link_to session_path, method: :delete do %>
             <span id="logout">
               <i class="fa fa-sign-out" aria-hidden="true"></i>
-              <span>Logout</span>
+              <span><strong>Logout</strong></span>
             </span>
           <% end %>
         <% else %>
           <%= link_to new_session_path do %>
             <span id="login">
               <i class="fa fa-sign-in" aria-hidden="true"></i>
-              <span>Login</span>
+              <span><strong>Login</strong></span>
             </span>
           <% end %>
           <%= link_to new_user_path do %>
             <span id="signin">
               <i class="fa fa-sign-in" aria-hidden="true"></i>
-              <span>Sign Up</span>
+              <span><strong>Sign Up</strong></span>
             </span>
           <% end %>
         <% end %>
