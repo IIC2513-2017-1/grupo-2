@@ -1,16 +1,9 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+<h1>
+  <strong>Welcome, <%= @user.username %> (<%= @user.email %>)!</strong>
+</h1>
 
 <% if not @user.purchases.empty? %>
+  <h2>Purchases</h2>
   <table>
     <thead>
       <th>Number</th>
@@ -39,9 +32,14 @@
 
     </tbody>
   </table>
+<% elsif not current_user.role.name == "admin" %>
+  <p>You have not purchased anything, go <%= link_to "shop", products_path, class: "inline-link" %> now!</p>
+<% else %>
+  <p>This user has not purchased anything yet.</p>
 <% end %>
 
-
-<%= link_to 'Cart', cart_path(@user) %> |
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<% if not current_user.role.name == "admin" %>
+  <%= link_to 'Cart', cart_path, class: "actions" %>
+<% end %>
+<%= link_to 'Edit', edit_user_path(@user), class: "actions" %>
+<%= link_to 'Back', users_path, class: "actions" %>

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :purchases, only: [:show, :create]
   resources :products do
-    resources :comments, :except => :show
+    resources :comments, :except => [:show, :new]
   end
 
   root to: "home#index"
