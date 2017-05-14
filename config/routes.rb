@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   resources :categories, :except => :show
   resources :users
   resource :session, only: [:new, :create, :destroy]
-  resources :purchases, only: [:show, :create]
+  resources :purchases, only: [:show, :create, :destroy]
   resources :products do
-    resources :comments, :except => :show
+    resources :comments, :except => [:show, :new, :index]
   end
 
   root to: "home#index"

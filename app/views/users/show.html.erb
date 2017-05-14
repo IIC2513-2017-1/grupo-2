@@ -1,16 +1,19 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+<h1>
+  <strong>Welcome, <%= @user.username %> (<%= @user.email %>)!</strong>
+  <span class="actions">
+    <% if (not current_user.role.name == "admin") or current_user.id == @user.id %>
+      <%= link_to cart_path do %>
+        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+      <% end %>
+    <% end %>
+    <%= link_to edit_user_path(@user) do %>
+      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+    <% end %>
+  </span>
+</h1>
 
 <% if not @user.purchases.empty? %>
+  <h2>Purchases</h2>
   <table>
     <thead>
       <th>Number</th>
@@ -23,7 +26,7 @@
       <% @user.purchases.each do |p| %>
         <tr>
           <td>
-            <%= link_to "#{count += 1}", p %>
+            <%= link_to "#{count += 1}", p, class: "table-link" %>
           </td>
           <td>
             <%= p.created_at %>
@@ -34,14 +37,22 @@
           <td>
             <%= p.get_total %>
           </td>
+          <% if current_user.role.name == "admin" %>
+            <td class="actions">
+              <%= link_to p, method: :delete, data: { confirm: 'Are you sure?' }  do %>
+               <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+              <% end %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
 
     </tbody>
   </table>
+<% elsif (not current_user.role.name == "admin") or current_user.id == @user.id %>
+  <p>You have not purchased anything, go <%= link_to "shop", products_path, class: "inline-link" %> now!</p>
+<% else %>
+  <p>This user has not purchased anything yet.</p>
 <% end %>
 
-
-<%= link_to 'Cart', cart_path(@user) %> |
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Back', users_path, class: "actions" %>
