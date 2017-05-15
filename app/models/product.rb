@@ -7,7 +7,7 @@ class Product < ApplicationRecord
                     less_than_or_equal_to: 100, allow_nil: true}
 
   has_and_belongs_to_many :categories
-  has_many :comments
-  has_many :purchase_products
+  has_many :comments, dependent: :destroy
+  has_many :purchase_products, dependent: :destroy
 
 end

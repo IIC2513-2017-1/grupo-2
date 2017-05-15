@@ -1,36 +1,43 @@
-<h1>Your Cart</h1>
+<% if not @user.carts.empty? %>
+  <h1>Your Cart</h1>
+  <table>
+    <thead>
+      <th>Product Name</th>
+      <th>Amount</th>
+      <th>Price</th>
+      <th>Total Price</th>
+    </thead>
+    <tbody>
+      <% @user.carts.each do |c| %>
+        <tr>
+          <td>
+            <%= link_to "#{c.product.name}", c.product, class: "table-link" %>
+          </td>
+          <td>
+            <%= c.amount %>
+          </td>
+          <td>
+            <%= c.product.price %>
+          </td>
+          <td>
+            <%= c.product.price * c.amount %>
+          </td>
+          <td class="actions">
+            <%= link_to destroy_cart_path(c.user, c), method: :delete do %>
+              <i class="fa fa-cart-arrow-down fa-2x" aria-hidden="true"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
 
-<table>
-  <thead>
-    <th>Product Name</th>
-    <th>Amount</th>
-    <th>Price</th>
-    <th>Total Price</th>
-  </thead>
-  <tbody>
-    <% @user.carts.each do |c| %>
-      <tr>
-        <td>
-          <%= link_to "#{c.product.name}", product_path(c.product) %>
-        </td>
-        <td>
-          <%= c.amount %>
-        </td>
-        <td>
-          <%= c.product.price %>
-        </td>
-        <td>
-          <%= c.product.price * c.amount %>
-        </td>
-        <td>
-          <%= link_to "Remove", destroy_cart_path(c.user, c), method: :delete %>
-        </td>
-      </tr>
-    <% end %>
-
-  </tbody>
-</table>
-
-<%= form_tag("/users/#{@user.id}/purchases", method: "POST") do %>
-  <%= submit_tag("Purchase Now!!!") %>
+    </tbody>
+  </table>
+  <%= form_tag("/purchases", method: "POST") do %>
+    <%= submit_tag("Purchase Now!!!") %>
+  <% end %>
+  <p>or</p>
+<% else %>
+  <h1>Your cart is empty!</h1>
 <% end %>
+
+<%= link_to "Go shop!", products_path, class: "actions"%>

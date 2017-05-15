@@ -11,7 +11,7 @@
     <% @purchase.purchase_products.each do |pp| %>
       <tr>
         <td>
-          <%= link_to "#{pp.product.name}", product_path(pp.product) %>
+          <%= link_to "#{pp.product.name}", product_path(pp.product), class: "table-link" %>
         </td>
         <td>
           <%= pp.amount %>
@@ -27,3 +27,5 @@
 
   </tbody>
 </table>
+
+<%= link_to "Back", @purchase.user, class: "actions" %>

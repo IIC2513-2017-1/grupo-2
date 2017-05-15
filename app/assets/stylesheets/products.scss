@@ -1,3 +1,140 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+[class*='col'] {
+  float: left;
+}
+
+.col-1-3 {
+  text-align: center;
+  width: 33.33%;
+}
+
+.col {
+  text-align: center;
+}
+
+.grid-item {
+  margin: 2%;
+  margin-bottom: 4%;
+  padding: 2%;
+  border: 1px solid;
+  span.actions a {
+    text-decoration: none;
+    color: grey;
+    padding: 4px;
+  }
+  span.actions a:hover {
+    text-decoration: none;
+    color: black;
+    background: white;
+  }
+  div.grid-item-price, div.grid-item-stock {
+    width: 50%;
+    float: left;
+    padding-bottom: 33px;
+  }
+}
+
+.grid-item-no-borders {
+  vertical-align: middle;
+  width: 350px;
+  height: 80px;
+  padding-bottom: 30px;
+  div.grid-item-name {
+    padding-bottom: 10px;
+  }
+  span.product-name {
+    font-size: 200%;
+  }
+  span.actions a {
+    text-decoration: none;
+    color: grey;
+    padding: 4px;
+  }
+  span.actions a:hover {
+    text-decoration: none;
+    color: black;
+    background: white;
+  }
+  div.grid-item-price, div.grid-item-stock {
+    width: 50%;
+    float: left;
+  }
+
+  p {
+    padding: 0px;
+    margin: 0px;
+  }
+}
+
+.grid-item-no-borders:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.grid:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+form#new_comment:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+label {
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+div.field {
+  textarea {
+    width: 100%;
+    height: 100px;
+  }
+}
+
+form#new_comment {
+  width: 50%;
+  div.actions input[type=submit] {
+    float: right;
+  }
+}
+
+div.product-description {
+  margin-bottom: 30px;
+}
+
+div.form {
+  text-align: center;
+  width: 50%;
+  border: 1px solid black;
+  padding: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  .form-title, .form-actions {
+    text-align: left;
+  }
+  textarea {
+    width: 80%;
+    height: 80px;
+  }
+  .paragraph-note {
+    margin-top: 0px;
+    padding-top: 0px;
+    font-style: italic;
+    color: red;
+  }
+}
+
+div.categories {
+  li.category-link {
+    float: left;
+    list-style: none;
+    padding-left: 5%;
+  }
+}

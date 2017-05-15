@@ -1,5 +1,10 @@
 class ProductsController < ApplicationController
+  include Registered
+
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in?, only: [:new, :edit, :create, :update, :destroy]
+  before_action :admin?, only: [:new, :edit, :create, :update, :destroy]
+  before_action :find_categories, only: [:create, :update]
 
   # GET /products
   # GET /products.json
@@ -11,6 +16,8 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @cart = Cart.new
+    @comments = @product.comments
+    @comment = Comment.new
   end
 
   # GET /products/new
@@ -25,7 +32,7 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
+    @product = Product.new(product_params.merge(categories: find_categories))
 
     respond_to do |format|
       if @product.save
@@ -42,7 +49,10 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1.json
   def update
     respond_to do |format|
-      if @product.update(product_params)
+
+
+      if @product.update(product_params.merge(categories: find_categories))
+
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }
         format.json { render :show, status: :ok, location: @product }
       else
@@ -70,6 +80,12 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :description, :price, :stock, :offer)
+      params.require(:product).permit(:name, :description, :price, :stock, :offer, categories: [])
+    end
+
+    def find_categories
+      # notice the [1..-1] part. It is there because the first element of
+      # params[:product][:categories] is an empty string
+      Category.find(params[:product][:categories][1..-1])
     end
 end

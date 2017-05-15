@@ -6,9 +6,104 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <script src="https://use.fontawesome.com/5a0930898a.js"></script>
+
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <div id="logo">
+        <%= link_to root_path do %>
+          <%= image_tag "amazing.png" %>
+        <% end %>
+      </div>
+
+      <nav id="main-menu">
+        <% if current_user && current_user.role.name == "admin" %>
+          <%= link_to users_path do %>
+            <span id="users_index">
+              <i class="fa fa-users" aria-hidden="true"></i>
+              <span><strong>Users</strong></span>
+            </span>
+          <% end %>
+        <% end %>
+        <%= link_to products_path do %>
+          <span id="shop">
+            <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+            <span><strong>Shop</strong></span>
+          </span>
+        <% end %>
+        <% if current_user %>
+          <%= link_to current_user do %>
+            <span id="profile">
+              <i class="fa fa-user" aria-hidden="true"></i>
+              <span><strong><%= current_user.username %></strong></span>
+            </span>
+          <% end %>
+          <%= link_to cart_path do %>
+            <span id="cart">
+              <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+              <span><strong>Cart</strong></span>
+            </span>
+          <% end %>
+          <%= link_to session_path, method: :delete do %>
+            <span id="logout">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+              <span><strong>Logout</strong></span>
+            </span>
+          <% end %>
+        <% else %>
+          <%= link_to new_session_path do %>
+            <span id="login">
+              <i class="fa fa-sign-in" aria-hidden="true"></i>
+              <span><strong>Login</strong></span>
+            </span>
+          <% end %>
+          <%= link_to new_user_path do %>
+            <span id="signin">
+              <i class="fa fa-sign-in" aria-hidden="true"></i>
+              <span><strong>Sign Up</strong></span>
+            </span>
+          <% end %>
+        <% end %>
+      </nav>
+
+      <!-- <div id="user-bar">
+        <% if current_user %>
+          <div class="name">Welcome, <%= link_to current_user.username, current_user %></div>
+          <%= link_to session_path, method: :delete do %>
+            <div id="logout">
+              <i class="fa fa-sign-out" aria-hidden="true"></i>
+              <span>Logout</span>
+            </div>
+          <% end %>
+        <% else %>
+          <%= link_to new_session_path do %>
+            <div id="login">
+              <i class="fa fa-sign-in" aria-hidden="true"></i>
+              <span>Login</span>
+            </div>
+          <% end %>
+        <% end %>
+      </div> -->
+    </header>
+    <main>
+      <% [:alert, :notice].each do |flash_type| %>
+        <% if (flash_message = flash[flash_type]).present? %>
+          <div class="<%= flash_type %>"><%= flash_message %></div>
+        <% end %>
+      <% end %>
+      <%= yield %>
+    </main>
+    <footer>
+      <hr>
+      <div id="project">© Amazing 2017</div>
+      <div id="license">
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+          <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"/>
+        </a>
+      </div>
+    </footer>
   </body>
 </html>
