@@ -24,11 +24,13 @@
             <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
           <% end %>
         </td>
-        <td class="actions">
-          <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %>
-            <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
-          <% end %>
-        </td>
+        <% if current_user.id != user.id %>
+          <td class="actions">
+            <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+            <% end %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

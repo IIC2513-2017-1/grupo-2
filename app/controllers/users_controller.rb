@@ -64,6 +64,9 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     same_user? @user
+    if current_user.role.name == "admin" && current_user.id == @user.id
+      redirect_to users_path, notice: "You can't delete an admin account from that same account." and return
+    end
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
