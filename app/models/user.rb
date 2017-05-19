@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :purchases, dependent: :destroy
   has_many :carts, dependent: :destroy
   has_many :wishes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   belongs_to :role
 
   validates :username, presence: true
