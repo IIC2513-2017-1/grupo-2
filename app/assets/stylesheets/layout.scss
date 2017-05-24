@@ -14,8 +14,11 @@ body {
 header {
   position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   padding: 10px;
+  z-index: 1;
   box-sizing: border-box;
   background: rgb(30, 34, 48);
   border-bottom: 1px solid #aaa;
@@ -26,15 +29,28 @@ footer {
   text-align: center;
   position: fixed;
   bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   background: white;
+  margin-top: 0;
   div#license a:hover {
     background: none;
   }
 }
 
+div#sidebar {
+  position: fixed;
+  top: 75px;
+  bottom: 50px;
+  left: 0;
+  background: #eee;
+  width: 25%;
+  padding-left: 10px;
+}
+
 main {
-  margin: 0 15px;
+  margin-left: 25%;
 }
 
 #logo img {
