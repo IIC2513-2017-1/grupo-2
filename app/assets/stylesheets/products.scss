@@ -29,10 +29,21 @@
     color: black;
     background: white;
   }
-  div.grid-item-price, div.grid-item-stock {
-    width: 50%;
+  div.grid-item-price {
+    width: 48%;
+    padding-bottom: 5px;
+    padding-top: 5px;
     float: left;
-    padding-bottom: 33px;
+    margin-bottom: 33px;
+    border: 1px solid #000;
+  }
+  div.grid-item-stock {
+    width: 48%;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    float: right;
+    margin-bottom: 33px;
+    border: 1px solid #000;
   }
 }
 

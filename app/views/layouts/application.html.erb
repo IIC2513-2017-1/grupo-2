@@ -71,7 +71,12 @@
 
     </header>
     <div id="sidebar">
-      <h1>This is our sidebar!</h1>
+      <h3>Search products by category</h3>
+      <% Category.all.each do |category| %>
+        <div class="sidebar-item">
+          <%= link_to category.name, products_path(search: category.id) %>
+        </div>
+      <% end %>
     </div>
     <main>
       <% [:alert, :notice].each do |flash_type| %>

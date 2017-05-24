@@ -10,7 +10,7 @@
           <div class="grid-item-stock">Stock: <%= p.stock %></div>
           <span class="actions">
             <%= link_to p do %>
-              <i class="fa fa-eye fa-2x" aria-hidden="true"></i>
+              <i class="fa fa-search fa-2x" aria-hidden="true"></i>
             <% end %>
             <% if current_user && current_user.role.name == "admin" %>
               <%= link_to edit_product_path(p) do %>
@@ -37,7 +37,7 @@
           <div class="grid-item-stock">Stock: <%= p.stock %></div>
           <span class="actions">
             <%= link_to p do %>
-              <i class="fa fa-eye fa-2x" aria-hidden="true"></i>
+              <i class="fa fa-search fa-2x" aria-hidden="true"></i>
             <% end %>
             <% if current_user && current_user.role.name == "admin" %>
               <%= link_to edit_product_path(p) do %>
@@ -64,7 +64,7 @@
           <div class="grid-item-stock">Stock: <%= p.stock %></div>
           <span class="actions">
             <%= link_to p do %>
-              <i class="fa fa-eye fa-2x" aria-hidden="true"></i>
+              <i class="fa fa-search fa-2x" aria-hidden="true"></i>
             <% end %>
             <% if current_user && current_user.role.name == "admin" %>
               <%= link_to edit_product_path(p) do %>
