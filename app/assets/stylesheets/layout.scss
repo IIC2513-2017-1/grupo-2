@@ -53,7 +53,7 @@ nav#main-menu {
   position: absolute;
   top: 19px;
   right: 30px;
-  padding: 10px;
+  padding: 0px 10px;
   text-align: center;
   border-radius: 10px 10px 10px 10px;
   a {
@@ -61,7 +61,6 @@ nav#main-menu {
     text-decoration: none;
     color: white;
     font-size: 18px;
-    border-left: 1px solid #aaa;
   }
   a {
     color: white;
@@ -91,4 +90,46 @@ nav#main-menu {
   padding: 5px;
   display: inline-block;
   vertical-align: middle;
+}
+
+.menu-item {
+  border-left: 1px solid #aaa;
+  display: inline-block;
+  padding: 10px 0px;
+}
+
+.dropbtn {
+   border: none;
+   cursor: pointer;
+   display: inline-block;
+   min-width: 130px;
+}
+
+.dropbtn a {
+   min-width: 130px;
+}
+
+.dropdown {
+   position: relative;
+   display: inline-block;
+}
+
+.dropdown-content {
+   display: none;
+   position: absolute;
+   width: 100%;
+   overflow: auto;
+   margin-top: 19px;
+   background: rgb(30, 34, 48);
+   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+   z-index: 1;
+}
+
+.dropdown-content a {
+   text-decoration: none;
+   display: block;
+}
+
+.dropdown:hover .dropdown-content {
+   display: block;
 }
