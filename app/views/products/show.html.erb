@@ -31,8 +31,7 @@
           <ul>
             <h4>Product categories:</h4>
             <% @product.categories.each do |c| %>
-              <!-- TODO: Change this link to a search by category -->
-              <li class="category-link"><%= link_to c.name, products_path %></li>
+              <li class="category-link"><%= link_to c.name, products_path(search: c.id) %></li>
             <% end %>
 
           </ul>

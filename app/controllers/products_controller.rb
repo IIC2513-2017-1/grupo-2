@@ -9,7 +9,12 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    if params.key?(:search)
+      category = Category.find(params[:search])
+      @products = category.products
+    else
+      @products = Product.all
+    end
   end
 
   # GET /products/1

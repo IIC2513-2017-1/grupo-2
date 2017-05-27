@@ -9,5 +9,6 @@ class Product < ApplicationRecord
   has_and_belongs_to_many :categories
   has_many :comments, dependent: :destroy
   has_many :purchase_products, dependent: :destroy
+  has_many :purchases, through: :purchase_products
 
 end
