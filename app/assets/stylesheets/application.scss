@@ -99,3 +99,18 @@ table {
 div.notice, div.alert {
   padding-bottom: 30px;
 }
+
+.grid-item a.product-image {
+  width: 100%;
+  img {
+  width: 100%;
+  }
+}
+
+.grid-item a.product-image:hover {
+  background: none;
+}
+
+.grid-item {
+  overflow: hidden;
+}
