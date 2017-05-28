@@ -4,6 +4,15 @@
     <% @products.each do |p| %>
       <% if i == 0 %>
         <div class="grid-item">
+          <% if p.image.file.nil? %>
+            <%= link_to p, class: "product-image" do %>
+              <%= image_tag("no_image_icon.png", class: 'thumbnail') %>
+            <% end %>
+          <% else %>
+            <%= link_to p, class: "product-image" do %>
+              <%= image_tag(p.image.to_s, class: 'thumbnail') %>
+            <% end %>
+          <% end %>
           <h3><%= p.name %></h3>
           <p><%= p.description %></p>
           <div class="grid-item-price">Price: $<%= p.price %></div>
@@ -31,6 +40,15 @@
     <% @products.each do |p| %>
       <% if i == 1 %>
         <div class="grid-item">
+          <% if p.image.file.nil? %>
+            <%= link_to p, class: "product-image" do %>
+              <%= image_tag("no_image_icon.png", class: 'thumbnail') %>
+            <% end %>
+          <% else %>
+            <%= link_to p, class: "product-image" do %>
+              <%= image_tag(p.image.to_s, class: 'thumbnail') %>
+            <% end %>
+          <% end %>
           <h3><%= p.name %></h3>
           <p><%= p.description %></p>
           <div class="grid-item-price">Price: $<%= p.price %></div>
@@ -58,6 +76,15 @@
     <% @products.each do |p| %>
       <% if i == 2 %>
         <div class="grid-item">
+          <% if p.image.file.nil? %>
+            <%= link_to p, class: "product-image" do %>
+              <%= image_tag("no_image_icon.png", class: 'thumbnail') %>
+            <% end %>
+          <% else %>
+            <%= link_to p, class: "product-image" do %>
+              <%= image_tag(p.image.to_s, class: 'thumbnail') %>
+            <% end %>
+          <% end %>
           <h3><%= p.name %></h3>
           <p><%= p.description %></p>
           <div class="grid-item-price">Price: $<%= p.price %></div>

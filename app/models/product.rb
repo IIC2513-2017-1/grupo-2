@@ -10,5 +10,6 @@ class Product < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :purchase_products, dependent: :destroy
   has_many :purchases, through: :purchase_products
+  mount_uploader :image, ProductImageUploader
 
 end
