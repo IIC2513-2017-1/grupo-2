@@ -46,7 +46,27 @@ div#sidebar {
   left: 0;
   background: #eee;
   width: 15%;
-  padding-left: 10px;
+  h3 {
+    padding-left: 10px;
+  }
+  .sidebar-item {
+    font-weight: bold;
+    overflow: auto;
+    a {
+      text-decoration: none;
+      color: #555;
+      padding: 5px 10px 5px 10px;
+      display: block;
+    }
+    a:hover {
+      background: none;
+      text-decoration: none;
+      color: #555;
+    }
+  }
+  .sidebar-item:hover {
+    background: #ddd;
+  }
 }
 
 main {
