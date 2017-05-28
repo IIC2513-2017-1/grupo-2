@@ -3,7 +3,7 @@
     <% i = 0 %>
     <% products.each do |p| %>
       <% if i == 0 %>
-        <div class="grid-item">
+      <div class="grid-item" data-product-id="<%= p.id %>">
           <% if p.image.file.nil? %>
             <%= link_to p, class: "product-image" do %>
               <%= image_tag("no_image_icon.png", class: 'thumbnail') %>
@@ -25,7 +25,7 @@
               <%= link_to edit_product_path(p) do %>
                <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
               <% end %>
-              <%= link_to p, method: :delete, data: { confirm: 'Are you sure?' }  do %>
+              <%= link_to p, method: :delete, data: { confirm: 'Are you sure?' }, remote: true  do %>
                <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
               <% end %>
             <% end %>
@@ -39,7 +39,7 @@
     <% i = 0 %>
     <% products.each do |p| %>
       <% if i == 1 %>
-        <div class="grid-item">
+      <div class="grid-item" data-product-id="<%= p.id %>">
           <% if p.image.file.nil? %>
             <%= link_to p, class: "product-image" do %>
               <%= image_tag("no_image_icon.png", class: 'thumbnail') %>
@@ -61,7 +61,7 @@
               <%= link_to edit_product_path(p) do %>
                <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
               <% end %>
-              <%= link_to p, method: :delete, data: { confirm: 'Are you sure?' }  do %>
+              <%= link_to p, method: :delete, data: { confirm: 'Are you sure?' }, remote: true  do %>
                <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
               <% end %>
             <% end %>
@@ -75,7 +75,7 @@
     <% i = 0 %>
     <% products.each do |p| %>
       <% if i == 2 %>
-        <div class="grid-item">
+        <div class="grid-item" data-product-id="<%= p.id %>">
           <% if p.image.file.nil? %>
             <%= link_to p, class: "product-image" do %>
               <%= image_tag("no_image_icon.png", class: 'thumbnail') %>
@@ -97,7 +97,7 @@
               <%= link_to edit_product_path(p) do %>
                <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
               <% end %>
-              <%= link_to p, method: :delete, data: { confirm: 'Are you sure?' }  do %>
+              <%= link_to p, method: :delete, data: { confirm: 'Are you sure?' }, remote: true  do %>
                <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
               <% end %>
             <% end %>
