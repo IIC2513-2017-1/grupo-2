@@ -15,7 +15,7 @@
 }
 
 .grid-item {
-  margin: 2%;
+  margin: 10px;
   margin-bottom: 4%;
   padding: 2%;
   border: 1px solid;
@@ -148,4 +148,21 @@ div.categories {
     list-style: none;
     padding-left: 5%;
   }
+}
+
+input.search {
+  margin: 1%;
+  width: 130px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+input.search:focus {
+  width: 96%;
+}
+
+input.search::after {
+  content: "";
+  display: block;
+  clear: both;
 }
