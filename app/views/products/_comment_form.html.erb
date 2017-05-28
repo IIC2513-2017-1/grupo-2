@@ -1,4 +1,4 @@
-<%= form_for comment, url: product_comments_path(product) do |f| %>
+<%= form_for comment, url: product_comments_path(product), remote: true, data: {type: 'json'} do |f| %>
   <% if comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -16,7 +16,10 @@
     <%= f.text_area :content %>
   </div>
 
-  <%= f.file_field :attach %>
+  <div class="field">
+    <%= f.file_field :attach %>
+  </div>
+
 
   <div class="actions">
     <%= f.submit "Comment" %>

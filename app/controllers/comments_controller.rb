@@ -31,7 +31,32 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         format.html { redirect_to product_path(@product), notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
+        format.json {
+          render json: {
+            remove: false,
+            table_row: "
+            <tr data-comment-id=#{@comment.id}>
+              <td>#{@comment.content}</td>
+              <td>#{current_user.username}</td>
+              <td>
+                <a href=#{@comment.attach.url(:original, false) if @comment.attach.present?} target=\"_blank\">#{"View" if @comment.attach.present?}</a>
+              </td>
+
+              <td class=\"actions\">
+                <a href=\"/products/#{@comment.product.id}/comments/#{@comment.id}/edit\">
+                  <i class=\"fa fa-pencil-square-o fa-2x\" aria-hidden=\"true\"></i>
+                </a>
+              </td>
+
+              <td class=\"actions\">
+                <a data-type=\"json\" data-confirm=\"Are you sure?\" data-remote=\"true\" rel=\"nofollow\" data-method=\"delete\" href=\"/products/#{@comment.product.id}/comments/#{@comment.id}\">
+                 <i class=\"fa fa-trash fa-2x\" aria-hidden=\"true\"></i>
+                </a>
+              </td>
+
+            </tr>"
+          }
+        }
       else
         format.html { render :new }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -58,10 +83,16 @@ class CommentsController < ApplicationController
   # DELETE /products/1/comments/1
   # DELETE /products/1/comments/1.json
   def destroy
+    comment_id = @comment.id
     @comment.destroy
     respond_to do |format|
       format.html { redirect_to @product, notice: 'Comment was successfully destroyed.' }
-      format.json { head :no_content }
+      format.json {
+          render json: {
+            remove: true,
+            comment_id: comment_id
+          }
+      }
     end
   end
 

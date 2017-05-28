@@ -65,18 +65,18 @@
 <div class="product-description">
   <%= @product.description %>
 </div>
+<table class="comments", id="comments">
 <% if @comments.size > 0 %>
-  <table class="comments">
     <tr>
       <th>Comment</th>
       <th>User</th>
       <th>Attachment</th>
     </tr>
     <% @comments.each do |c| %>
-      <tr>
+      <tr <%= "data-comment-id=#{c.id}"%>>
         <td><%= c.content %></td>
         <td><%= c.user.username %></td>
-        <td><%= link_to "View", c.attach.url(:original, false), target: :_blank %></td>
+        <td><%= link_to "View", c.attach.url(:original, false), target: :_blank if c.attach.present?%></td>
         <% if (current_user && (current_user.role.name == "admin" || current_user.id == c.user.id)) %>
           <td class="actions">
             <%= link_to edit_product_comment_path(c.product, c) do %>
@@ -84,15 +84,15 @@
             <% end %>
           </td>
           <td class="actions">
-            <%= link_to [c.product, c], method: :delete, data: { confirm: 'Are you sure?' }  do %>
+            <%= link_to [c.product, c], method: :delete, remote: true, data: {type: 'json', confirm: 'Are you sure?' }  do %>
              <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
             <% end %>
           </td>
         <% end %>
       </tr>
     <% end %>
-  </table>
 <% end %>
+</table>
 
 <% if current_user %>
   <%= render 'comment_form', {comment: @comment, product: @product} %>
