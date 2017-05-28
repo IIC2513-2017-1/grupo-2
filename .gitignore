@@ -18,3 +18,6 @@
 
 # Ignore product images
 /public/uploads/product/image/*
+
+# Ignore comments' attachments
+/public/system/comments/attaches/*  # may have to change
