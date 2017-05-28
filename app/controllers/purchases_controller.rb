@@ -29,6 +29,8 @@ class PurchasesController < ApplicationController
     end
     if not purchased
       @purchase.destroy
+    else
+      UserMailer.purchase_email(@user, @purchase).deliver_later
     end
     redirect_to @user
   end
