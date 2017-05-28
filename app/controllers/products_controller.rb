@@ -15,6 +15,14 @@ class ProductsController < ApplicationController
     else
       @products = Product.all
     end
+    if params.key?(:name)
+      @products = @products.search_query(params[:name])
+    end
+  end
+
+  def search
+    @products = Product.search_query(params[:name])
+    render :layout => false
   end
 
   # GET /products/1

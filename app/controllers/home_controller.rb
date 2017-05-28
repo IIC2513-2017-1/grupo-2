@@ -2,24 +2,25 @@ class HomeController < ApplicationController
 
   def index
     pre_products = Product.all
-    @products = []
+    @popular_products = []
     pre_products.each do |product|
-      if @products.size < 3
-        @products << product
-      elsif @products[2].purchases.size < product.purchases.size
-        @products[2] = product
-        if @products[2].purchases.size > @products[1].purchases.size
-          aux_product = @products[1]
-          @products[1] = @products[2]
-          @products[2] = aux_product
-          if @products[1].purchases.size > @products[0].purchases.size
-            aux_product = @products[0]
-            @products[0] = @products[1]
-            @products[1] = aux_product
+      if @popular_products.size < 3
+        @popular_products << product
+      elsif @popular_products[2].purchases.size < product.purchases.size
+        @popular_products[2] = product
+        if @popular_products[2].purchases.size > @popular_products[1].purchases.size
+          aux_product = @popular_products[1]
+          @popular_products[1] = @popular_products[2]
+          @popular_products[2] = aux_product
+          if @popular_products[1].purchases.size > @popular_products[0].purchases.size
+            aux_product = @popular_products[0]
+            @popular_products[0] = @popular_products[1]
+            @popular_products[1] = aux_product
           end
         end
       end
     end
+    @newest_products = Product.all.order("products.created_at DESC").limit(3)
   end
 
 end
