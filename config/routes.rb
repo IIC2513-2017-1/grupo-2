@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   delete "/users/:user_id/cart/:id", to: "users#destroy_cart", as: "destroy_cart"
   get "/products/search/", to: "products#search"
 
-  resources :categories, :except => :show
+  resources :categories
   resources :users
   resource :session, only: [:new, :create, :destroy]
   resources :purchases, only: [:show, :create, :destroy]
