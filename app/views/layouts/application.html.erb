@@ -68,13 +68,16 @@
           </div>
         <% end %>
       </nav>
-
     </header>
     <div id="sidebar">
       <h3>Search products by category</h3>
       <% Category.all.each do |category| %>
         <div class="sidebar-item">
-          <%= link_to category.name, products_path(search: category.id) %>
+          <% if @products_index %>
+            <%= link_to category.name, category, remote: true %>
+          <% else %>
+            <%= link_to category.name, products_path(search: category.id) %>
+          <% end %>
         </div>
       <% end %>
     </div>
