@@ -9,5 +9,23 @@ class Product < ApplicationRecord
   has_and_belongs_to_many :categories
   has_many :comments, dependent: :destroy
   has_many :purchase_products, dependent: :destroy
+  has_many :purchases, through: :purchase_products
+  mount_uploader :image, ProductImageUploader
+
+  scope :search_query, lambda { |query|
+    terms = query.downcase.split(/\s+/)  # split on whitespace
+
+    terms = terms.map { |e|
+      ('%' + e.gsub('*', '%') + '%').gsub(/%+/, '%')
+    }
+
+    num_or_conds = 1
+    where(
+      terms.map { |term|
+        "(LOWER(products.name) LIKE ?)"
+      }.join(' AND '),
+      *terms.map { |e| [e] * num_or_conds }.flatten
+    )
+  }
 
 end

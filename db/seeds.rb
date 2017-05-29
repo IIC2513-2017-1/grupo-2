@@ -15,7 +15,7 @@ User.destroy_all
 Product.destroy_all
 Category.destroy_all
 
-admin = User.new(username: "admin", email: "admin@admin.admin", password: "administrator", password_confirmation: "administrator")
+admin = User.new(username: "admin", email: "admin@admin.admin", password: "administrator", password_confirmation: "administrator", email_confirmed: true)
 admin.role = Role.find_by_name("admin")
 admin.save
 
@@ -33,14 +33,15 @@ end
 end
 
 # Products
-50.times do
+10.times do
   name = Faker::Commerce.unique.product_name
   description = Faker::Lorem.paragraph
   price = Integer Faker::Commerce.price
   stock = Faker::Number.between(0, 1000)
   offer = Faker::Number.between(0, 100)
+  image = open(Faker::Avatar.image)
 
-  p = Product.create(name: name, description: description, price: price, stock: stock, offer: offer)
+  p = Product.create(name: name, description: description, price: price, stock: stock, offer: offer, image: image)
   p.categories << Category.order('RANDOM()').limit(1 + rand(8))  # assign categories
 
   # Create comments for the product
