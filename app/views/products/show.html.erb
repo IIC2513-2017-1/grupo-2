@@ -1,70 +1,70 @@
-<div class="grid">
-  <div class="col">
-    <div class="grid-item-no-borders">
-      <div class="grid-item-name">
-        <span class="product-name"><strong><%= @product.name %></strong></span>
+<div id="product-details">
+  <div id="product-image-cats">
+    <div id="product-image">
+        <% if @product.image.file.nil? %>
+          <%= image_tag "no_image_icon.png" %>
+        <% else %>
+          <%= image_tag @product.image.to_s %>
+        <% end %>
+    </div>
+    <div id="product-cats">
+      <% if not @product.categories.empty? %>
+        <h4>Product categories:</h4>
+        <ul>
+          <% @product.categories.each do |c| %>
+            <li class="category-link"><%= link_to c.name, products_path(search: c.id) %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+  <div id="product-info">
+    <div id="product-title">
+      <h1>
+        <%= @product.name %>
+        <% if current_user && current_user.role.name == "admin" %>
+          <%= link_to edit_product_path(@product) do %>
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+          <% end %>
+          <%= link_to @product, method: :delete, data: { confirm: 'Are you sure?' }  do %>
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          <% end %>
+        <% end %>
+      </h1>
+    </div>
+    <div id="product-desc">
+      <%= @product.description %>
+    </div>
+    <div id="product-price-stock">
+      <div id="product-price">
+        Price: $<%= @product.price %>
       </div>
-      <% if current_user && current_user.role.name == "admin" %>
-        <div class="grid-item-actions">
-          <span class="actions">
-            <%= link_to edit_product_path(@product) do %>
-             <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
-            <% end %>
-            <%= link_to @product, method: :delete, data: { confirm: 'Are you sure?' }  do %>
-             <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
-            <% end %>
-          </span>
+      <% if @product.stock > 0 %>
+        <div id="product-stock" class="in-stock">
+          Stock: <%= @product.stock %>
+        </div>
+      <% else %>
+        <div id="product-stock" class="out-of-stock">
+          Stock: <%= @product.stock %>
         </div>
       <% end %>
-      <div class="grid-item-price">
-        <p>$<%= @product.price %></p>
-      </div>
-      <div class="grid-item-stock">
-        <p>Stock: <%= @product.stock %></p>
-      </div>
+    </div>
+    <div id="product-add-to-cart-form">
+      <%= form_for(@cart, url: update_cart_path) do |f| %>
+        <div class="field">
+          <%= f.number_field :amount %>
+        </div>
+        <div class="field">
+          <%= f.hidden_field :product_id, :value => @product.id %>
+        </div>
+        <div class="actions">
+          <%= f.submit "Add to Cart" %>
+        </div>
+      <% end %>
     </div>
   </div>
-  <div class="col">
-    <div class="grid-item-no-borders">
-      <div class="categories">
-        <% if not @product.categories.empty? %>
-          <ul>
-            <h4>Product categories:</h4>
-            <% @product.categories.each do |c| %>
-              <li class="category-link"><%= link_to c.name, products_path(search: c.id) %></li>
-            <% end %>
-
-          </ul>
-        <% end %>
-      </div>
-
-    </div>
-  </div>
-  <% if current_user %>
-    <div class="col">
-      <div class="grid-item-no-borders">
-        <%= form_for(@cart, url: update_cart_path) do |f| %>
-
-          <div class="field">
-            <%= f.number_field :amount %>
-          </div>
-
-          <div class="field">
-            <%= f.hidden_field :product_id, :value => @product.id %>
-          </div>
-
-          <div class="actions">
-            <%= f.submit "Add to Cart" %>
-          </div>
-
-        <% end %>
-      </div>
-    <% end %>
-  </div>
 </div>
-<div class="product-description">
-  <%= @product.description %>
-</div>
+
 <table class="comments", id="comments">
 <% if @comments.size > 0 %>
     <tr>
