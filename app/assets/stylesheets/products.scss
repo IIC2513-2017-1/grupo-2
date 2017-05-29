@@ -150,20 +150,34 @@ div.categories {
   }
 }
 
-input.search {
-  margin: 1%;
-  width: 130px;
-  -webkit-transition: width 0.4s ease-in-out;
-  transition: width 0.4s ease-in-out;
+div#index-title {
+  width: 100%;
+  h1 {
+    float: left;
+    margin-left: 10px;
+  }
+  input.search {
+    float: right;
+    margin: 1%;
+    width: 130px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
+  input.search:focus {
+    width: 50%;
+  }
 }
 
-input.search:focus {
-  width: 96%;
+div#index-actions {
+  a {
+    margin-left: 10px;
+  }
 }
 
-input.search::after {
+div#index-title::after {
   content: "";
   display: block;
+  height: 0;
   clear: both;
 }
 
