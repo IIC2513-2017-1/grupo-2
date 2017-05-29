@@ -1,1 +1,12 @@
 <h1>Welcome to Amazing, the best store in the market!</h1>
+<h2>Popular products</h2>
+
+<div id="popular-products">
+  <%= render partial: 'products/index_display', locals: {products: @popular_products} %>
+</div>
+
+<h2>Newest products</h2>
+
+<div id="newest-products">
+  <%= render partial: 'products/index_display', locals: {products: @newest_products} %>
+</div>

@@ -1,0 +1,116 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+input[type=submit] {
+ padding: 5px 15px;
+ background: rgb(255, 241, 69);
+ border: 1px solid grey;
+ cursor: pointer;
+ -webkit-border-radius: 5px;
+ border-radius: 5px;
+}
+
+input[type=submit]:hover {
+ background: rgb(235, 221, 49);
+}
+
+a.actions {
+ padding: 5px 15px;
+ background: rgb(220, 220, 220);
+ border: 1px solid grey;
+ cursor: pointer;
+ -webkit-border-radius: 5px;
+ border-radius: 5px;
+ text-decoration: none;
+ color: black;
+}
+
+a.actions:hover {
+ background: rgb(200, 200, 200);
+ text-decoration: none;
+ color: black;
+}
+
+a.inline-link {
+  text-decoration: none;
+  color: blue;
+}
+
+a.inline-link:hover {
+  text-decoration: none;
+  color: orange;
+  background: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 30px;
+  td, th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 8px;
+  }
+  td a.table-link {
+      color: blue;
+      background: none;
+      text-decoration: none;
+  }
+  td a.table-link:hover {
+      color: orange;
+      background: none;
+      text-decoration: none;
+  }
+  td.actions, th.actions {
+    border: none;
+    background: white;
+    text-align: center;
+    padding: 8px;
+    margin: 0px;
+    width: 30px;
+    a {
+      color: grey;
+      text-decoration: none;
+    }
+    a:hover {
+      color: black;
+      text-decoration: none;
+      background: white;
+    }
+  }
+  tr:nth-child(even) {
+    background: #dddddd;
+  }
+}
+
+div.notice, div.alert {
+  padding-bottom: 30px;
+}
+
+.grid-item a.product-image {
+  width: 100%;
+  img {
+  width: 100%;
+  }
+}
+
+.grid-item a.product-image:hover {
+  background: none;
+}
+
+.grid-item {
+  overflow: hidden;
+}

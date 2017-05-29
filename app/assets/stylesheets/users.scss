@@ -1,3 +1,16 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+h1 {
+  span.actions a {
+    text-decoration: none;
+    color: grey;
+    padding: 4px;
+  }
+  span.actions a:hover {
+    text-decoration: none;
+    color: black;
+    background: white;
+  }
+}
