@@ -7,6 +7,11 @@ Rails.application.routes.draw do
 
   resources :categories
   resources :users
+  resources :users do
+    member do
+      get :confirm_email
+    end
+  end
   resource :session, only: [:new, :create, :destroy]
   resources :purchases, only: [:show, :create, :destroy]
   resources :products do
