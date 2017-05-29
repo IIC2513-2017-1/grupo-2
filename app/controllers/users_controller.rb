@@ -36,6 +36,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        UserMailer.welcome_email(@user).deliver_later
         format.html { redirect_to root_path, notice: 'Account created. You may now login.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -95,6 +96,18 @@ class UsersController < ApplicationController
     same_user? @cart.user
     @cart.destroy
     redirect_to cart_path
+  end
+
+  def confirm_email
+    user = User.find_by_confirm_token(params[:id])
+    if user
+      user.email_activate
+      flash[:success] = "Your email has been confirmed."
+      redirect_to new_session_path
+    else
+      flash[:error] = "Sorry. User does not exist"
+      redirect_to root_url
+    end
   end
 
   private

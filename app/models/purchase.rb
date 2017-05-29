@@ -1,6 +1,6 @@
 class Purchase < ApplicationRecord
   belongs_to :user
-  has_many :purchase_products
+  has_many :purchase_products, dependent: :destroy
 
   def get_total
     sum = 0

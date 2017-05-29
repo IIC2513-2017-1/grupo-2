@@ -1,0 +1,9 @@
+Welcome to The Amazing Store, <%= @user.username %>
+===============================================
+ 
+You have successfully signed up,
+your username is: <%= @user.username %>.
+ 
+Thanks for registering! To confirm your registration click the URL below.
+
+<%= confirm_email_user_url(@user.confirm_token) %>

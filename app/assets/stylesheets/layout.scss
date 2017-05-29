@@ -8,7 +8,6 @@ body {
   color: #333;
   padding-top: 85px;
   background-color: #f5f8fa;
-  padding-bottom: 85px;
 }
 
 header {
@@ -18,7 +17,7 @@ header {
   right: 0;
   width: 100%;
   padding: 10px;
-  z-index: 1;
+  z-index: 2;
   box-sizing: border-box;
   background: rgb(30, 34, 48);
   border-bottom: 1px solid #aaa;
@@ -26,14 +25,10 @@ header {
 }
 
 footer {
+  margin-left: 15%;
   text-align: center;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
   background: white;
-  margin-top: 0;
+  margin-top: 20px;
   div#license a:hover {
     background: none;
   }
@@ -42,15 +37,37 @@ footer {
 div#sidebar {
   position: fixed;
   top: 75px;
-  bottom: 50px;
+  bottom: 0;
   left: 0;
   background: #eee;
   width: 15%;
-  padding-left: 10px;
+  overflow: auto;
+  z-index: 1;
+  h3 {
+    padding-left: 10px;
+  }
+  .sidebar-item {
+    font-weight: bold;
+    a {
+      text-decoration: none;
+      color: #555;
+      padding: 5px 10px 5px 10px;
+      display: block;
+    }
+    a:hover {
+      background: none;
+      text-decoration: none;
+      color: #555;
+    }
+  }
+  .sidebar-item:hover {
+    background: #ddd;
+  }
 }
 
 main {
-  margin-left: 15%;
+  margin: 3% 3% 0 18%;
+  min-height: 320px;
 }
 
 #logo img {
