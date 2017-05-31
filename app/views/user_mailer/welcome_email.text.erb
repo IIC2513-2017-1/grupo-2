@@ -4,4 +4,6 @@ Welcome to The Amazing Store, <%= @user.username %>
 You have successfully signed up,
 your username is: <%= @user.username %>.
  
-Thanks for registering! To confirm your registration <%= link_to "here", "https://glacial-mesa-44341.herokuapp.com/users/#{@user.confirm_token}/confirm_email"%>.
+Thanks for registering! To confirm your registration, follow the following link:
+
+<%= @url %>

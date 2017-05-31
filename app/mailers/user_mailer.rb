@@ -4,7 +4,7 @@ class UserMailer < ApplicationMailer
 
   def welcome_email(user)
     @user = user
-    @url = "http://www.amazing.herokublablabla/session/new"
+    @url = Rails.env.production? ? confirm_email_user_url(@user.confirm_token, only_path: false) : confirm_email_user_url(@user.confirm_token, only_path: false, port: 3000)
     mail(to: user.email, subject: "Welcome to Amazing!")
   end
 
