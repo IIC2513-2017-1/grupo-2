@@ -19,6 +19,7 @@
 # Ignore product images
 /public/uploads/product/image/*
 /public/uploads/tmp/product/image/*
+/public/uploads/tmp/*
 
 # Ignore comments' attachments
 /public/system
