@@ -2,9 +2,13 @@ class PurchasesController < ApplicationController
   include Registered
 
   before_action :logged_in?
-  before_action :admin?, only: [:destroy, :confirm]
+  before_action :admin?, only: [:destroy, :confirm, :index]
   before_action :set_purchase, only: [:show, :destroy, :confirm]
   before_action :set_current_user, only: [:create]
+
+  def index
+    @purchases = Purchase.pending
+  end
 
   def show
     permitted_user? @purchase
@@ -45,13 +49,27 @@ class PurchasesController < ApplicationController
   end
 
   def confirm
-    user = @purchase.user
-    if @purchase.payment_confirmed
-      @purchase.update(payment_confirmed: false)
-    else
-      @purchase.update(payment_confirmed: true)
+    respond_to do |format|
+      if @purchase.payment_confirmed && @purchase.update(payment_confirmed: false)
+        format.html {redirect_to @purchase, notice: "Purchase was succesfully edited."}
+        format.json {
+          render json: {
+            unconfirmed: {
+              id: @purchase.id
+            }
+          }
+        }
+      elsif @purchase.update(payment_confirmed: true)
+        format.html {redirect_to @purchase, notice: "Purchase was succesfully edited."}
+        format.json {
+          render json: {
+            confirmed: {
+              id: @purchase.id
+            }
+          }
+        }
+      end
     end
-    redirect_to user
   end
 
   private
