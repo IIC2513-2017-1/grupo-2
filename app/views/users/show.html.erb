@@ -1,7 +1,7 @@
 <h1>
   <strong>Welcome, <%= @user.username %> (<%= @user.email %>)!</strong>
   <span class="actions">
-    <% if (not current_user.role.name == "admin") or current_user.id == @user.id %>
+    <% if (not current_user.role.name == "admin") or (current_user.id == @user.id) %>
       <%= link_to cart_path do %>
         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
       <% end %>
@@ -20,6 +20,7 @@
       <th>Date</th>
       <th>Products</th>
       <th>Price</th>
+      <th>Payment</th>
     </thead>
     <tbody>
       <% count = 0 %>
@@ -37,12 +38,32 @@
           <td>
             <%= p.get_total %>
           </td>
+          <td>
+            <% if p.payment_confirmed %>
+              Confirmed!
+            <% else %>
+              Pending...
+            <% end %>
+          </td>
           <% if current_user.role.name == "admin" %>
             <td class="actions">
               <%= link_to p, method: :delete, data: { confirm: 'Are you sure?' }  do %>
                <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
               <% end %>
             </td>
+            <% if p.payment_confirmed %>
+              <td class="actions">
+                <%= link_to confirm_purchase_path(p), method: :patch, data: { confirm: 'Are you sure?' } do %>
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                <% end %>
+              </td>
+            <% else %>
+              <td class="actions">
+                <%= link_to confirm_purchase_path(p), method: :patch, data: { confirm: 'Are you sure?' } do %>
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                <% end %>
+              </td>
+            <% end %>
           <% end %>
         </tr>
       <% end %>

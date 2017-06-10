@@ -1,6 +1,6 @@
 <h1>Purchase Details</h1>
 
-<table>
+<table style="text-align: left">
   <thead>
     <th>Product Name</th>
     <th>Amount</th>
@@ -27,3 +27,6 @@
 
   </tbody>
 </table>
+
+<p>Purchase total: $<%= @purchase.get_total %></p>
+<p>Be sure to transfer this amount to the shop account.</p>

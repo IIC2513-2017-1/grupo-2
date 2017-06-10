@@ -14,4 +14,10 @@ class UserMailer < ApplicationMailer
     mail(to: user.email, subject: "Amazing purchase acknowledgement")
   end
 
+  # def admin_purchase_email(user, purchase)
+  #   @user = user
+  #   @purchase = purchase
+  #   mail(to: user.email, subject: "New Amazing purchase")
+  # end
+
 end
