@@ -2,8 +2,8 @@ class PurchasesController < ApplicationController
   include Registered
 
   before_action :logged_in?
-  before_action :admin?, only: [:destroy]
-  before_action :set_purchase, only: [:show, :destroy]
+  before_action :admin?, only: [:destroy, :confirm]
+  before_action :set_purchase, only: [:show, :destroy, :confirm]
   before_action :set_current_user, only: [:create]
 
   def show
@@ -31,6 +31,7 @@ class PurchasesController < ApplicationController
       @purchase.destroy
     else
       UserMailer.purchase_email(@user, @purchase).deliver_later
+      # UserMailer.admin_purchase_email(Role.find_by_name("admin").users.last, @purchase).deliver_later
     end
     redirect_to @user
   end
@@ -39,6 +40,16 @@ class PurchasesController < ApplicationController
     user = @purchase.user
     @purchase.purchase_products.destroy_all
     @purchase.destroy
+    redirect_to user
+  end
+
+  def confirm
+    user = @purchase.user
+    if @purchase.payment_confirmed
+      @purchase.update(payment_confirmed: false)
+    else
+      @purchase.update(payment_confirmed: true)
+    end
     redirect_to user
   end
 

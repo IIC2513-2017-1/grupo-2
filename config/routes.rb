@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post "/carts", to: "users#add_to_cart", as: "update_cart"
   delete "/users/:user_id/cart/:id", to: "users#destroy_cart", as: "destroy_cart"
   get "/products/search/", to: "products#search"
+  patch "/purchases/:id/confirm", to: "purchases#confirm", as: "confirm_purchase"
 
   resources :categories
   resources :users
