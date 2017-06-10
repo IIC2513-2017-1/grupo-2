@@ -30,8 +30,9 @@ class PurchasesController < ApplicationController
     if not purchased
       @purchase.destroy
     else
+      @admin = Role.find_by_name("admin").users.last
+      UserMailer.admin_purchase_email(@admin, @user, @purchase).deliver_later
       UserMailer.purchase_email(@user, @purchase).deliver_later
-      # UserMailer.admin_purchase_email(Role.find_by_name("admin").users.last, @purchase).deliver_later
     end
     redirect_to @user
   end
