@@ -3,8 +3,13 @@
 // # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on('turbolinks:load', function () {
-  
+
   $("input.search").bind("keyup", function() {
+
+    $("div.sidebar-item").each(function() {
+      $(this).removeClass("active");
+    });
+
     var form = $("form.search");
     var url = "/products/search";
     var formData = form.serialize();
@@ -17,5 +22,17 @@ $(document).on('turbolinks:load', function () {
     $("#main-index").html(data);
   }).on('ajax:error', function (e, data) {
     console.log(data);
+  });
+
+  $("div.sidebar-item").on('click', function() {
+    var btn = $(this);
+
+    $("div.sidebar-item").each(function() {
+      $(this).removeClass("active");
+    });
+
+    $("input.search").val("");
+
+    btn.addClass("active");
   });
 });

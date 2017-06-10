@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Amazing</title>
+    <title>Amazing Store</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <script src="https://use.fontawesome.com/5a0930898a.js"></script>
+
+    <%= favicon_link_tag 'amazingfavicon.png' %>
 
   </head>
 
@@ -72,7 +74,12 @@
     <div id="sidebar">
       <h3>Search products by category</h3>
       <% Category.all.each do |category| %>
-        <div class="sidebar-item">
+        <% if @search && (@search.to_i == category.id) %>
+          <% si_class = "sidebar-item active" %>
+        <% else %>
+          <% si_class = "sidebar-item" %>
+        <% end %>
+        <div class="<%= si_class %>">
           <% if @products_index %>
             <%= link_to category.name, category, remote: true %>
           <% else %>
