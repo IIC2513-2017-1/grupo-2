@@ -59,9 +59,12 @@ div#sidebar {
       text-decoration: none;
       color: #555;
     }
+    &.active {
+      background-color: #ddd;
+    }
   }
   .sidebar-item:hover {
-    background: #ddd;
+    background-color: #ddd;
   }
 }
 
