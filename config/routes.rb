@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     end
   end
   resource :session, only: [:new, :create, :destroy]
-  resources :purchases, only: [:show, :create, :destroy]
+  resources :purchases, only: [:index, :show, :create, :destroy]
   resources :products do
     resources :comments, :except => [:show, :new, :index]
   end
