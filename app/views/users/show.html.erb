@@ -1,7 +1,11 @@
 <h1>
-  <strong>Welcome, <%= @user.username %> (<%= @user.email %>)!</strong>
+  <% if (not current_user.role.name == "admin") or current_user.id == @user.id %>
+    <strong>Welcome, <%= @user.username %> (<%= @user.email %>)!</strong>
+  <% else %>
+    <strong>Details for user <%= @user.username %> (<%= @user.email %>)!</strong>
+  <% end %>
   <span class="actions">
-    <% if (not current_user.role.name == "admin") or current_user.id == @user.id %>
+    <% if (not current_user.role.name == "admin") or (current_user.id == @user.id) %>
       <%= link_to cart_path do %>
         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
       <% end %>
@@ -14,17 +18,18 @@
 
 <% if not @user.purchases.empty? %>
   <h2>Purchases</h2>
-  <table>
+  <table data-remove="false">
     <thead>
       <th>Number</th>
       <th>Date</th>
       <th>Products</th>
       <th>Price</th>
+      <th>Payment</th>
     </thead>
     <tbody>
       <% count = 0 %>
       <% @user.purchases.each do |p| %>
-        <tr>
+        <tr data-purchase-id="<%= p.id %>">
           <td>
             <%= link_to "#{count += 1}", p, class: "table-link" %>
           </td>
@@ -37,7 +42,27 @@
           <td>
             <%= p.get_total %>
           </td>
+          <td data-payment="true">
+            <% if p.payment_confirmed %>
+              Confirmed!
+            <% else %>
+              Pending...
+            <% end %>
+          </td>
           <% if current_user.role.name == "admin" %>
+            <% if p.payment_confirmed %>
+              <td class="actions">
+                <%= link_to confirm_purchase_path(p), method: :patch, remote: true, data: { type: "json", confirm: 'Are you sure?' } do %>
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                <% end %>
+              </td>
+            <% else %>
+              <td class="actions">
+                <%= link_to confirm_purchase_path(p), method: :patch, remote: true, data: { type: "json", confirm: 'Are you sure?' } do %>
+                  <i class="fa fa-check" aria-hidden="true"></i>
+                <% end %>
+              </td>
+            <% end %>
             <td class="actions">
               <%= link_to p, method: :delete, data: { confirm: 'Are you sure?' }  do %>
                <i class="fa fa-trash fa-2x" aria-hidden="true"></i>

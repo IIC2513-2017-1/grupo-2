@@ -13,6 +13,7 @@ class ProductsController < ApplicationController
     if params.key?(:search)
       category = Category.find(params[:search])
       @products = category.products
+      @search = params[:search]
     else
       @products = Product.all
     end

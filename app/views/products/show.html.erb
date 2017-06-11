@@ -37,29 +37,37 @@
     </div>
     <div id="product-price-stock">
       <div id="product-price">
-        Price: $<%= @product.price %>
+        <span>Price:</span>
+        <% if @product.current_price < @product.original_price %>
+          <span id="original-price">$<%= @product.original_price %></span>
+        <% end %>
+        <span id="current-price">$<%= @product.current_price %></span>
       </div>
       <% if @product.stock > 0 %>
         <div id="product-stock" class="in-stock">
-          Stock: <%= @product.stock %>
+          <span>Stock:</span>
+          <span id="stock"><%= @product.stock %></span>
         </div>
       <% else %>
         <div id="product-stock" class="out-of-stock">
-          Stock: <%= @product.stock %>
+          <span>Stock:</span>
+          <span id="stock"><%= @product.stock %></span>
         </div>
       <% end %>
     </div>
     <div id="product-add-to-cart-form">
-      <%= form_for(@cart, url: update_cart_path) do |f| %>
-        <div class="field">
-          <%= f.number_field :amount %>
-        </div>
-        <div class="field">
-          <%= f.hidden_field :product_id, :value => @product.id %>
-        </div>
-        <div class="actions">
-          <%= f.submit "Add to Cart" %>
-        </div>
+      <% if current_user %>
+        <%= form_for(@cart, url: update_cart_path) do |f| %>
+          <div class="field">
+            <%= f.number_field :amount %>
+          </div>
+          <div class="field">
+            <%= f.hidden_field :product_id, :value => @product.id %>
+          </div>
+          <div class="actions">
+            <%= f.submit "Add to Cart" %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>
