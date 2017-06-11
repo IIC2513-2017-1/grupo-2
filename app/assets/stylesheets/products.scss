@@ -44,11 +44,12 @@
     border: 1px solid #000;
     span {
       &.current-price {
-        color: green;
+        color: orange;
       }
       &.original-price {
         text-decoration: line-through;
         font-size: 75%;
+        color: gray;
       }
     }
   }
@@ -252,11 +253,12 @@ div#product-details {
         width: 50%;
         span {
           &#current-price {
-            color: green;
+            color: orange;
           }
           &#original-price {
             text-decoration: line-through;
             font-size: 75%;
+            color: gray;
           }
         }
       }
@@ -265,10 +267,10 @@ div#product-details {
         text-align: center;
         width: 50%;
       }
-      div#product-stock.in-stock {
+      div#product-stock.in-stock span#stock {
         color: green;
       }
-      div#product-.out-of-stock {
+      div#product-stock.out-of-stock span#stock {
         color: red;
       }
     }
