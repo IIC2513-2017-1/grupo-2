@@ -1,0 +1,59 @@
+<h1>Statistics</h1>
+<h2>Amount of products sold by category</h2>
+<div id="product-amount"></div>
+<h2>Amount of money spent by category</h2>
+<div id="money-amount"></div>
+
+<script>
+
+  $(document).on('turbolinks:load', function () {
+    var chart1 = c3.generate({
+      bindto: "#product-amount",
+      data: {
+        x : 'x',
+        columns: [
+          ['x'<% Category.all.pluck("name").each do |name| %>, '<%= name %>'<% end %>],
+          ['product amount'<% Category.all.map {|category| category.product_amount}.each do |amount| %>, <%= amount %><% end %>],
+        ],
+        type: 'bar'
+      },
+      axis: {
+        x: {
+          type: 'category',
+          tick: {
+            rotate: 75,
+            multiline: false
+          },
+          height: 130
+        }
+      },
+      color: {
+          pattern: ['#1f77b4']
+      }
+    });
+    var chart2 = c3.generate({
+      bindto: "#money-amount",
+      data: {
+        x : 'x',
+        columns: [
+          ['x'<% Category.all.pluck("name").each do |name| %>, '<%= name %>'<% end %>],
+          ['money amount'<% Category.all.map {|category| category.money_amount}.each do |amount| %>, <%= amount %><% end %>],
+        ],
+        type: 'bar'
+      },
+      axis: {
+        x: {
+          type: 'category',
+          tick: {
+            rotate: 75,
+            multiline: false
+          },
+          height: 130
+        }
+      },
+      color: {
+          pattern: ['#ff7f0e']
+      }
+    });
+  });
+</script>

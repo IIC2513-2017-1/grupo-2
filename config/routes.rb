@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   patch "/purchases/:id/confirm", to: "purchases#confirm", as: "confirm_purchase"
 
   resources :categories
+  resources :statistics, only: :index
   resources :users
   resources :users do
     member do
