@@ -5,7 +5,7 @@ class Purchase < ApplicationRecord
   def get_total
     sum = 0
     purchase_products.each do |purchase|
-      sum += purchase.product.price * purchase.amount
+      sum += purchase.product.current_price * purchase.amount
     end
     sum
   end

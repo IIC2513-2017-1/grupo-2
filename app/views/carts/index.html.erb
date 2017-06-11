@@ -17,10 +17,10 @@
             <%= c.amount %>
           </td>
           <td>
-            <%= c.product.price %>
+            <%= c.product.current_price %>
           </td>
           <td>
-            <%= c.product.price * c.amount %>
+            <%= c.product.current_price * c.amount %>
           </td>
           <td class="actions">
             <%= link_to destroy_cart_path(c.user, c), method: :delete do %>
