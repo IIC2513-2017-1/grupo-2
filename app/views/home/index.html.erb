@@ -9,11 +9,27 @@
       <li>
         <% if product.image.file.nil? %>
           <%= link_to product, class: "product-image" do %>
-            <%= image_tag("no_image_icon.png", class: 'thumbnail') %>
+            <div class="image">
+              <%= image_tag("no_image_icon.png", class: 'thumbnail') %>
+            </div>
+            <div class="product-details">
+              <span>
+                <h3><%= product.name %></h3>
+                <p><%= product.description %></p>
+              </span>
+            </div>
           <% end %>
         <% else %>
           <%= link_to product, class: "product-image" do %>
-            <%= image_tag(product.image.to_s, class: 'thumbnail') %>
+            <div class="image">
+              <%= image_tag(product.image.to_s, class: 'thumbnail') %>
+            </div>
+            <div class="product-details">
+              <span>
+                <h3><%= product.name %></h3>
+                <p><%= product.description %></p>
+              </span>
+            </div>
           <% end %>
         <% end %>
       </li>
@@ -31,11 +47,27 @@
       <li>
         <% if product.image.file.nil? %>
           <%= link_to product, class: "product-image" do %>
-            <%= image_tag("no_image_icon.png", class: 'thumbnail') %>
+            <div class="image">
+              <%= image_tag("no_image_icon.png", class: 'thumbnail') %>
+            </div>
+            <div class="product-details">
+              <span>
+                <h3><%= product.name %></h3>
+                <p><%= product.description %></p>
+              </span>
+            </div>
           <% end %>
         <% else %>
           <%= link_to product, class: "product-image" do %>
-            <%= image_tag(product.image.to_s, class: 'thumbnail') %>
+            <div class="image">
+              <%= image_tag(product.image.to_s, class: 'thumbnail') %>
+            </div>
+            <div class="product-details">
+              <span>
+                <h3><%= product.name %></h3>
+                <p><%= product.description %></p>
+              </span>
+            </div>
           <% end %>
         <% end %>
       </li>
