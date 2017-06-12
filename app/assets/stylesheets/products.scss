@@ -19,12 +19,18 @@
   margin-bottom: 4%;
   padding: 2%;
   border: 1px solid;
-  span.actions a {
+  div.grid-item-price-stock::after {
+    clear: both;
+    content: "";
+    height: 0;
+    display: block;
+  }
+  div.actions a {
     text-decoration: none;
     color: grey;
     padding: 4px;
   }
-  span.actions a:hover {
+  div.actions a:hover {
     text-decoration: none;
     color: black;
     background: white;
@@ -36,6 +42,16 @@
     float: left;
     margin-bottom: 33px;
     border: 1px solid #000;
+    span {
+      &.current-price {
+        color: orange;
+      }
+      &.original-price {
+        text-decoration: line-through;
+        font-size: 75%;
+        color: gray;
+      }
+    }
   }
   div.grid-item-stock {
     width: 48%;
@@ -58,12 +74,12 @@
   span.product-name {
     font-size: 200%;
   }
-  span.actions a {
+  div.actions a {
     text-decoration: none;
     color: grey;
     padding: 4px;
   }
-  span.actions a:hover {
+  div.actions a:hover {
     text-decoration: none;
     color: black;
     background: white;
@@ -235,16 +251,26 @@ div#product-details {
         float:left;
         text-align: center;
         width: 50%;
+        span {
+          &#current-price {
+            color: orange;
+          }
+          &#original-price {
+            text-decoration: line-through;
+            font-size: 75%;
+            color: gray;
+          }
+        }
       }
       div#product-stock {
         float:left;
         text-align: center;
         width: 50%;
       }
-      div#product-stock.in-stock {
+      div#product-stock.in-stock span#stock {
         color: green;
       }
-      div#product-stock.out-of-stock {
+      div#product-stock.out-of-stock span#stock {
         color: red;
       }
     }

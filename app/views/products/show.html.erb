@@ -37,15 +37,21 @@
     </div>
     <div id="product-price-stock">
       <div id="product-price">
-        Price: $<%= @product.price %>
+        <span>Price:</span>
+        <% if @product.current_price < @product.original_price %>
+          <span id="original-price">$<%= @product.original_price %></span>
+        <% end %>
+        <span id="current-price">$<%= @product.current_price %></span>
       </div>
       <% if @product.stock > 0 %>
         <div id="product-stock" class="in-stock">
-          Stock: <%= @product.stock %>
+          <span>Stock:</span>
+          <span id="stock"><%= @product.stock %></span>
         </div>
       <% else %>
         <div id="product-stock" class="out-of-stock">
-          Stock: <%= @product.stock %>
+          <span>Stock:</span>
+          <span id="stock"><%= @product.stock %></span>
         </div>
       <% end %>
     </div>

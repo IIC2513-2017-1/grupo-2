@@ -28,4 +28,12 @@ class Product < ApplicationRecord
     )
   }
 
+  def original_price
+    price
+  end
+
+  def current_price
+    price - (price * offer / 100)
+  end
+
 end
