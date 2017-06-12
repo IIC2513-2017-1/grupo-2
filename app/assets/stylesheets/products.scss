@@ -304,13 +304,37 @@ div#product-details {
       padding: 0;
       width: 500px;
       height: 300px;
-      background: #ccc;
+      background: #ddd;
       text-align: center;
       line-height: 300px;
-      img {
-      	margin-left: auto;
-      	margin-right: auto;
-      	display: block;
+      a {
+        text-decoration: none;
+        color: #444;
+        &:hover {
+          color: #444;
+        }
+        div.image {
+          float: left;
+        }
+        div.product-details {
+          text-decoration: none;
+          background: none;
+          vertical-align: middle;
+          height: 100%;
+          span {
+            line-height: 300px;
+            vertical-align: center;
+          }
+          h3 {
+            text-decoration: none;
+            line-height: 30px;
+            text-align: left;
+          }
+          p {
+            text-align: left;
+            text-decoration: none;
+          }
+        }
       }
     }
   }
@@ -328,10 +352,10 @@ a.control-prev, a.control-next {
   text-decoration: none;
   font-weight: 600;
   font-size: 18px;
-  opacity: 0.8;
+  opacity: 0.3;
   cursor: pointer;
   &:hover {
-    opacity: 1;
+    opacity: 0.6;
     -webkit-transition: all 0.2s ease;
   }
 }
