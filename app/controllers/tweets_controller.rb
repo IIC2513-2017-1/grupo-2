@@ -6,7 +6,7 @@ class TweetsController < ApplicationController
       get_bearer_token
     end
 
-    render json: HTTParty::get("https://api.twitter.com/1.1/search/tweets.json?q=%23Amazing", headers: {"Authorization": "Bearer #{@bearer_token}"})
+    @results = HTTParty::get("https://api.twitter.com/1.1/search/tweets.json?q=%23AmazingTheStore", headers: {"Authorization": "Bearer #{@bearer_token}"})
   end
 
   private
