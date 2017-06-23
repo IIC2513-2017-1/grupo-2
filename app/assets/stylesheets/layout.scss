@@ -73,11 +73,15 @@ main {
   min-height: 320px;
 }
 
-#logo img {
+.logo img {
   height: 50px;
 }
 
-nav#main-menu, #logo {
+.logo + .logo {
+  margin-left: 2%;
+}
+
+nav#main-menu, .logo {
   display: inline-block;
   vertical-align: middle;
   a:hover {

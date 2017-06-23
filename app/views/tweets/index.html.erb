@@ -1,0 +1,18 @@
+<h1>See what's being tweeted about Amazing!</h1>
+<table>
+  <thead>
+    <th colspan="2">Tweet</th>
+    <th>Tweeted by</th>
+  </thead>
+  <tbody>
+    <% i = 1 %>
+    <% @results["statuses"].each do |tweet| %>
+      <tr>
+        <td><%= link_to i, "https://twitter.com/statuses/#{tweet["id_str"]}", class: "table-link" %></td>
+        <td><%= tweet["text"] %></td>
+        <td><%= link_to tweet["user"]["name"], "https://twitter.com/#{tweet["user"]["screen_name"]}", class: "table-link" %></td>
+      </tr>
+      <% i += 1 %>
+    <% end %>
+  </tbody>
+</table>
