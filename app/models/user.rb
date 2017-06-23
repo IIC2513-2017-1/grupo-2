@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   has_secure_password
 
+  has_attached_file :avatar, styles: { thumb: "100x100>", medium: "200x200>", large: "400x400>"}, default_url: "/assets/missing_avatar.jpg"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+
   before_create :confirmation_token
   before_validation :set_default_role
 
