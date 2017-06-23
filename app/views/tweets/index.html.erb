@@ -9,7 +9,11 @@
     <% @results["statuses"].each do |tweet| %>
       <tr>
         <td><%= link_to i, "https://twitter.com/statuses/#{tweet["id_str"]}", class: "table-link" %></td>
-        <td><%= tweet["text"] %></td>
+        <% t = CGI.unescapeHTML(tweet["text"]) %>
+        <% tweet["entities"]["urls"].each do |url| %>
+          <% t.gsub!(url["url"], url["display_url"]) %>
+        <% end %>
+        <td><%= t %></td>
         <td><%= link_to tweet["user"]["name"], "https://twitter.com/#{tweet["user"]["screen_name"]}", class: "table-link" %></td>
       </tr>
       <% i += 1 %>
