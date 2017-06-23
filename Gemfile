@@ -39,9 +39,6 @@ gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 # To upload files using Ajax
 gem 'remotipart', '~> 1.2'
 
-# To use Twitter API
-gem 'omniauth-twitter'
-
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
