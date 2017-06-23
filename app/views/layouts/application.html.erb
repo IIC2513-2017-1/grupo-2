@@ -15,9 +15,15 @@
 
   <body>
     <header>
-      <div id="logo">
+      <div class="logo">
         <%= link_to root_path do %>
           <%= image_tag "amazing.png" %>
+        <% end %>
+      </div>
+
+      <div class="logo">
+        <%= link_to tweets_path do %>
+          <%= image_tag "bird.png" %>
         <% end %>
       </div>
 
