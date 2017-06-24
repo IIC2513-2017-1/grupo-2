@@ -5,20 +5,21 @@ class UserMailer < ApplicationMailer
   def welcome_email(user)
     @user = user
     @url = Rails.env.production? ? confirm_email_user_url(@user.confirm_token, only_path: false) : confirm_email_user_url(@user.confirm_token, only_path: false, port: 3000)
-    mail(to: user.email, subject: "Welcome to Amazing!")
+    mail(from: 'amazing.noreply@gmail.com', to: user.email, subject: "Welcome to Amazing!")
   end
 
   def purchase_email(user, purchase)
     @user = user
     @purchase = purchase
-    mail(to: user.email, subject: "Amazing purchase acknowledgement")
+    mail(from: 'amazing.noreply@gmail.com', to: user.email, subject: "Amazing purchase acknowledgement")
   end
 
   def admin_purchase_email(admin, user, purchase)
     @user = user
     @purchase = purchase
     @admin = admin
-    mail(to: admin.email, subject: "New Amazing purchase")
+    @url = Rails.env.production? ? purchases_url(only_path: false) : purchases_url(only_path: false, port: 3000)
+    mail(from: 'amazing.noreply@gmail.com', to: admin.email, subject: "New Amazing purchase awaits confirmation")
   end
 
 end
