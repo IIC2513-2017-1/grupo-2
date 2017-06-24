@@ -11,7 +11,7 @@ class StatisticsController < ApplicationController
     @category_money_amounts = @categories.map {|category| category.money_amount}
     @month_names = []
     @month_spendings = []
-    date = DateTime.new(DateTime.now.year, DateTime.now.month) - 12.months
+    date = DateTime.new(DateTime.now.year, DateTime.now.month) - 11.months
     12.times do
       @month_names << date.strftime("%Y - %m")
       @month_spendings << Purchase.where("created_at >= ? AND created_at < ?", date, date + 1.months).sum(&:get_total)
