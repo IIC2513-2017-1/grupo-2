@@ -98,6 +98,18 @@ class UsersController < ApplicationController
     redirect_to cart_path
   end
 
+  def confirm_email
+    user = User.find_by_confirm_token(params[:id])
+    if user
+      user.email_activate
+      flash[:success] = "Your email has been confirmed."
+      redirect_to new_session_path
+    else
+      flash[:error] = "Sorry. User does not exist"
+      redirect_to root_url
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
@@ -110,7 +122,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :password, :email, :password_confirmation)
+      params.require(:user).permit(:username, :password, :email, :password_confirmation, :avatar)
     end
 
     def cart_params

@@ -15,7 +15,7 @@ User.destroy_all
 Product.destroy_all
 Category.destroy_all
 
-admin = User.new(username: "admin", email: "admin@admin.admin", password: "administrator", password_confirmation: "administrator")
+admin = User.new(username: "admin", email: "amazing.noreply@gmail.com", password: "administrator", password_confirmation: "administrator", email_confirmed: true)
 admin.role = Role.find_by_name("admin")
 admin.save
 

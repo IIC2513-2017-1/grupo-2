@@ -47,9 +47,11 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = {
 
-    host: 'localhost'
+    host: 'localhost:3000'
 
   }
+
+  # Paperclip.options[:command_path] = "/usr/bin/"
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

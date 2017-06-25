@@ -3,7 +3,7 @@
     <% i = 0 %>
     <% products.each do |p| %>
       <% if i == 0 %>
-        <div class="grid-item">
+      <div class="grid-item" data-product-id="<%= p.id %>">
           <% if p.image.file.nil? %>
             <%= link_to p, class: "product-image" do %>
               <%= image_tag("no_image_icon.png", class: 'thumbnail') %>
@@ -15,9 +15,17 @@
           <% end %>
           <h3><%= p.name %></h3>
           <p><%= p.description %></p>
-          <div class="grid-item-price">Price: $<%= p.price %></div>
-          <div class="grid-item-stock">Stock: <%= p.stock %></div>
-          <span class="actions">
+          <div class="grid-item-price-stock">
+            <div class="grid-item-price">
+              <span>Price:</span>
+              <% if p.original_price > p.current_price %>
+                <span class="original-price">$<%= p.original_price %></span>
+              <% end %>
+              <span class="current-price">$<%= p.current_price %></span>
+            </div>
+            <div class="grid-item-stock">Stock: <%= p.stock %></div>
+          </div>
+          <div class="actions">
             <%= link_to p do %>
               <i class="fa fa-search fa-2x" aria-hidden="true"></i>
             <% end %>
@@ -25,11 +33,11 @@
               <%= link_to edit_product_path(p) do %>
                <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
               <% end %>
-              <%= link_to p, method: :delete, data: { confirm: 'Are you sure?' }  do %>
+              <%= link_to p, method: :delete, data: { confirm: 'Are you sure?' }, remote: true  do %>
                <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
               <% end %>
             <% end %>
-          </span>
+          </div>
         </div>
       <% end %>
       <% i = (i + 1) % 3 %>
@@ -39,7 +47,7 @@
     <% i = 0 %>
     <% products.each do |p| %>
       <% if i == 1 %>
-        <div class="grid-item">
+      <div class="grid-item" data-product-id="<%= p.id %>">
           <% if p.image.file.nil? %>
             <%= link_to p, class: "product-image" do %>
               <%= image_tag("no_image_icon.png", class: 'thumbnail') %>
@@ -51,9 +59,17 @@
           <% end %>
           <h3><%= p.name %></h3>
           <p><%= p.description %></p>
-          <div class="grid-item-price">Price: $<%= p.price %></div>
-          <div class="grid-item-stock">Stock: <%= p.stock %></div>
-          <span class="actions">
+          <div class="grid-item-price-stock">
+            <div class="grid-item-price">
+              <span>Price:</span>
+              <% if p.original_price > p.current_price %>
+                <span class="original-price">$<%= p.original_price %></span>
+              <% end %>
+              <span class="current-price">$<%= p.current_price %></span>
+            </div>
+            <div class="grid-item-stock">Stock: <%= p.stock %></div>
+          </div>
+          <div class="actions">
             <%= link_to p do %>
               <i class="fa fa-search fa-2x" aria-hidden="true"></i>
             <% end %>
@@ -61,11 +77,11 @@
               <%= link_to edit_product_path(p) do %>
                <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
               <% end %>
-              <%= link_to p, method: :delete, data: { confirm: 'Are you sure?' }  do %>
+              <%= link_to p, method: :delete, data: { confirm: 'Are you sure?' }, remote: true  do %>
                <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
               <% end %>
             <% end %>
-          </span>
+          </div>
         </div>
       <% end %>
       <% i = (i + 1) % 3 %>
@@ -75,7 +91,7 @@
     <% i = 0 %>
     <% products.each do |p| %>
       <% if i == 2 %>
-        <div class="grid-item">
+        <div class="grid-item" data-product-id="<%= p.id %>">
           <% if p.image.file.nil? %>
             <%= link_to p, class: "product-image" do %>
               <%= image_tag("no_image_icon.png", class: 'thumbnail') %>
@@ -87,9 +103,17 @@
           <% end %>
           <h3><%= p.name %></h3>
           <p><%= p.description %></p>
-          <div class="grid-item-price">Price: $<%= p.price %></div>
-          <div class="grid-item-stock">Stock: <%= p.stock %></div>
-          <span class="actions">
+          <div class="grid-item-price-stock">
+            <div class="grid-item-price">
+              <span>Price:</span>
+              <% if p.original_price > p.current_price %>
+                <span class="original-price">$<%= p.original_price %></span>
+              <% end %>
+              <span class="current-price">$<%= p.current_price %></span>
+            </div>
+            <div class="grid-item-stock">Stock: <%= p.stock %></div>
+          </div>
+          <div class="actions">
             <%= link_to p do %>
               <i class="fa fa-search fa-2x" aria-hidden="true"></i>
             <% end %>
@@ -97,11 +121,11 @@
               <%= link_to edit_product_path(p) do %>
                <i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
               <% end %>
-              <%= link_to p, method: :delete, data: { confirm: 'Are you sure?' }  do %>
+              <%= link_to p, method: :delete, data: { confirm: 'Are you sure?' }, remote: true  do %>
                <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
               <% end %>
             <% end %>
-          </span>
+          </div>
         </div>
       <% end %>
       <% i = (i + 1) % 3 %>

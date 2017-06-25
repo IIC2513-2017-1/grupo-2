@@ -1,12 +1,76 @@
 <h1>Welcome to Amazing, the best store in the market!</h1>
 <h2>Popular products</h2>
 
-<div id="popular-products">
-  <%= render partial: 'products/index_display', locals: {products: @popular_products} %>
+<div id="popular-products" class="slider slider1">
+  <a href="#" class="control-next">></a>
+  <a href="#" class="control-prev"><</a>
+  <ul>
+    <% @popular_products.each do |product| %>
+      <li>
+        <% if product.image.file.nil? %>
+          <%= link_to product, class: "product-image" do %>
+            <div class="image">
+              <%= image_tag("no_image_icon.png", class: 'thumbnail') %>
+            </div>
+            <div class="product-details">
+              <span>
+                <h3><%= product.name %></h3>
+                <p><%= product.description %></p>
+              </span>
+            </div>
+          <% end %>
+        <% else %>
+          <%= link_to product, class: "product-image" do %>
+            <div class="image">
+              <%= image_tag(product.image.to_s, class: 'thumbnail') %>
+            </div>
+            <div class="product-details">
+              <span>
+                <h3><%= product.name %></h3>
+                <p><%= product.description %></p>
+              </span>
+            </div>
+          <% end %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 </div>
 
 <h2>Newest products</h2>
 
-<div id="newest-products">
-  <%= render partial: 'products/index_display', locals: {products: @newest_products} %>
+<div id="newest-products" class="slider slider2">
+  <a href="#" class="control-next">></a>
+  <a href="#" class="control-prev"><</a>
+  <ul>
+    <% @newest_products.each do |product| %>
+      <li>
+        <% if product.image.file.nil? %>
+          <%= link_to product, class: "product-image" do %>
+            <div class="image">
+              <%= image_tag("no_image_icon.png", class: 'thumbnail') %>
+            </div>
+            <div class="product-details">
+              <span>
+                <h3><%= product.name %></h3>
+                <p><%= product.description %></p>
+              </span>
+            </div>
+          <% end %>
+        <% else %>
+          <%= link_to product, class: "product-image" do %>
+            <div class="image">
+              <%= image_tag(product.image.to_s, class: 'thumbnail') %>
+            </div>
+            <div class="product-details">
+              <span>
+                <h3><%= product.name %></h3>
+                <p><%= product.description %></p>
+              </span>
+            </div>
+          <% end %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 </div>

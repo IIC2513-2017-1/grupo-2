@@ -3,6 +3,10 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 h1 {
+
+  text-align: center;
+  margin-bottom: 3%;
+
   span.actions a {
     text-decoration: none;
     color: grey;
@@ -13,4 +17,22 @@ h1 {
     color: black;
     background: white;
   }
+}
+
+div#avatar-purchases {
+  text-align: center;
+}
+
+div#avatar {
+  display: inline-block;
+}
+
+div#user-purchases {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 3%;
+}
+
+h2#purchase-table-title {
+  text-align: center;
 }

@@ -9,9 +9,11 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
+    @products_index = true
     if params.key?(:search)
       category = Category.find(params[:search])
       @products = category.products
+      @search = params[:search]
     else
       @products = Product.all
     end
@@ -82,6 +84,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
+      format.js
     end
   end
 

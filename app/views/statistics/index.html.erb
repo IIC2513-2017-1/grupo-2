@@ -1,0 +1,84 @@
+<h1>Statistics</h1>
+<h2>Amount of products sold by category</h2>
+<div id="product-amount"></div>
+<h2>Amount of money spent by category</h2>
+<div id="money-amount"></div>
+<h2>Amount of money spent each of the last 12 months</h2>
+<div id="purchases-by-date"></div>
+
+<script>
+
+  $(document).on('turbolinks:load', function () {
+    var chart1 = c3.generate({
+      bindto: "#product-amount",
+      data: {
+        x : 'x',
+        columns: [
+          ['x'<% @category_names.each do |name| %>, '<%= name %>'<% end %>],
+          ['product amount'<% @category_product_amounts.each do |amount| %>, <%= amount %><% end %>],
+        ],
+        type: 'bar'
+      },
+      axis: {
+        x: {
+          type: 'category',
+          tick: {
+            rotate: 75,
+            multiline: false
+          },
+          height: 130
+        }
+      },
+      color: {
+          pattern: ['#1f77b4']
+      }
+    });
+    var chart2 = c3.generate({
+      bindto: "#money-amount",
+      data: {
+        x : 'x',
+        columns: [
+          ['x'<% @category_names.each do |name| %>, '<%= name %>'<% end %>],
+          ['money amount'<% @category_money_amounts.each do |amount| %>, <%= amount %><% end %>],
+        ],
+        type: 'bar'
+      },
+      axis: {
+        x: {
+          type: 'category',
+          tick: {
+            rotate: 75,
+            multiline: false
+          },
+          height: 130
+        }
+      },
+      color: {
+          pattern: ['#ff7f0e']
+      }
+    });
+  });
+  var chart3 = c3.generate({
+    bindto: "#purchases-by-date",
+    data: {
+      x: 'x',
+      columns: [
+        ['x'<% @month_names.each do |name| %>, '<%= name %>'<% end %>],
+        ['money amount'<% @month_spendings.each do |amount| %>, <%= amount %><% end %>],
+      ]
+    },
+    axis: {
+      x: {
+        type: 'category',
+        tick: {
+          rotate: 75,
+          multiline: false
+        },
+        height: 130
+      }
+    },
+    color: {
+        pattern: ['#00eeaa']
+    }
+  });
+</script>

@@ -1,5 +1,28 @@
 <h1>Purchase Details</h1>
 
+<div class="purchase-status">
+  <h3>Status:
+    <% if @purchase.payment_confirmed %>
+      Confirmed!
+    <% else %>
+      Pending...
+    <% end %>
+    <% if @purchase.payment_confirmed %>
+      <td class="actions">
+        <%= link_to confirm_purchase_path(@purchase), method: :patch, class: "confirm-payment", data: { confirm: 'Are you sure?' } do %>
+          <i class="fa fa-times" aria-hidden="true"></i>
+        <% end %>
+      </td>
+    <% else %>
+      <td class="actions">
+        <%= link_to confirm_purchase_path(@purchase), method: :patch, class: "confirm-payment", data: { confirm: 'Are you sure?' } do %>
+          <i class="fa fa-check" aria-hidden="true"></i>
+        <% end %>
+      </td>
+    <% end %>
+  </h3>
+</div>
+
 <table>
   <thead>
     <th>Product Name</th>

@@ -1,0 +1,63 @@
+<h2>Pending Purchases</h2>
+<table data-remove="true">
+  <thead>
+    <th>Number</th>
+    <th>User</th>
+    <th>Date</th>
+    <th>Products</th>
+    <th>Price</th>
+    <th>Payment</th>
+  </thead>
+  <tbody>
+    <% count = 0 %>
+    <% @purchases.each do |purchase| %>
+      <tr data-purchase-id="<%= purchase.id %>">
+        <td>
+          <%= link_to "#{count += 1}", purchase, class: "table-link" %>
+        </td>
+        <td>
+          <%= purchase.user.username %>
+        </td>
+        <td>
+          <%= purchase.created_at %>
+        </td>
+        <td>
+          <%= purchase.nproducts %>
+        </td>
+        <td>
+          <%= purchase.get_total %>
+        </td>
+        <td>
+          <% if purchase.payment_confirmed %>
+            Confirmed!
+          <% else %>
+            Pending...
+          <% end %>
+        </td>
+        <% if current_user.role.name == "admin" %>
+          <% if purchase.payment_confirmed %>
+            <td class="actions">
+              <%= link_to confirm_purchase_path(purchase), method: :patch, remote: true, data: { type: "json", confirm: 'Are you sure?' } do %>
+                <i class="fa fa-times" aria-hidden="true"></i>
+              <% end %>
+            </td>
+          <% else %>
+            <td class="actions">
+              <%= link_to confirm_purchase_path(purchase), method: :patch, remote: true, data: { type: "json", confirm: 'Are you sure?' } do %>
+                <i class="fa fa-check" aria-hidden="true"></i>
+              <% end %>
+            </td>
+          <% end %>
+          <td class="actions">
+            <%= link_to purchase, method: :delete, data: { confirm: 'Are you sure?' }  do %>
+             <i class="fa fa-trash fa-2x" aria-hidden="true"></i>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+<%= link_to 'Back', root_path, class: "actions" %>
