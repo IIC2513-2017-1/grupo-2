@@ -19,5 +19,6 @@ class Purchase < ApplicationRecord
   end
 
   scope :pending, lambda { where(:payment_confirmed => false) }
+  scope :confirmed, lambda { where(:payment_confirmed => true) }
 
 end
