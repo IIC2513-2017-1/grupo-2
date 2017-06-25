@@ -20,11 +20,12 @@ admin.role = Role.find_by_name("admin")
 admin.save
 
 # Users
-30.times do
+10.times do
   username = Faker::Internet.unique.user_name
   email = Faker::Internet.email(username)
   password = Faker::Internet.password(8)
-  User.create(username: username, email: email, password: password, password_confirmation: password)
+  avatar = open(Faker::Avatar.image)
+  User.create(username: username, email: email, password: password, password_confirmation: password, avatar: avatar)
 end
 
 # Categories
@@ -50,6 +51,21 @@ end
       content: Faker::Lorem.paragraph,
       product: p,
       user: User.order('RANDOM()').first)
+  end
+end
+
+20.times do
+  user = User.order('RANDOM()').first
+  purchase = Purchase.create(user: user, payment_confirmed: true)
+  purchase.update(created_at: purchase.created_at - rand(12).months)
+
+  products = Product.order('RANDOM()')
+  for i in 0..Faker::Number.between(1, 5) do
+    PurchaseProduct.create(
+      purchase: purchase,
+      product: products[i],
+      amount: Faker::Number.between(1, 30)
+    )
   end
 end
 
