@@ -20,6 +20,13 @@ Rails.application.routes.draw do
     resources :comments, :except => [:show, :new, :index]
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :products, only: [:index, :show]
+      resources :users, only: [:show]
+    end
+  end
+
   root to: "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
