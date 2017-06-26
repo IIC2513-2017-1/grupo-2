@@ -26,7 +26,15 @@ class User < ApplicationRecord
     save!(:validate => false)
   end
 
+  def generate_token_and_save
+    loop do
+      self.token = SecureRandom.hex(64)
+      break if save
+    end
+  end
+
   private
+
   def set_default_role
     self.role ||= Role.find_by_name('user')
   end
