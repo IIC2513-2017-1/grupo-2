@@ -1,4 +1,5 @@
 json.user do
+  json.id @user.id
   json.href api_v1_user_url(@user)
   json.username @user.username
   json.email @user.email

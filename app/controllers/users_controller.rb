@@ -38,7 +38,7 @@ class UsersController < ApplicationController
       if @user.save
         @user.generate_token_and_save
         UserMailer.welcome_email(@user).deliver_later
-        format.html { redirect_to root_path, notice: 'Account created. You may now login.' }
+        format.html { redirect_to root_path, notice: 'Account created. You have to confirm your email to login!' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }

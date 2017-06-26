@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   validates :username, presence: true
   validates :username, :email, uniqueness: true
-  validates :password, length: {in: 6..20}, confirmation: true
+  validates :password, length: {in: 6..20}, confirmation: true, presence: {on: :create}, allow_blank: {on: :update}
   validates :email, presence: true, format: {with: /[\S]+@[\S]+\.[\S]+/}
 
 
