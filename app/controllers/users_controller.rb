@@ -80,7 +80,6 @@ class UsersController < ApplicationController
   end
 
   def add_to_cart
-
     @cart = Cart.new(cart_params)
     same_user? @cart.user
     if @cart.update_if_similar || @cart.save

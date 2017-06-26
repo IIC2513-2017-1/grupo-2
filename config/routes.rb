@@ -24,8 +24,11 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :products, only: [:index, :show]
-      resources :users, only: [:show]
+      resources :products, only: [:index, :show, :create, :update, :destroy]
+      resources :users, only: [:show] do
+        resources :carts, only: [:index, :show, :create, :destroy]
+        resources :purchases, only: [:index, :show, :create]
+      end
     end
   end
 
