@@ -15,6 +15,7 @@
     <% end %>
   </span>
 </h1>
+<p>API token: <%= @user.token if @user == current_user %></p>
 <div id="avatar-purchases">
   <div id="avatar" ><%= image_tag @user.avatar.url(:large) %></div>
 

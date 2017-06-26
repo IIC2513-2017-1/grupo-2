@@ -1,14 +1,25 @@
 module Api::V1
   class PurchasesController < ApiController
+    before_action :authenticate
+
     def index
+      unless (@current_user.id == params[:user_id]) || (@current_user.role.name == "admin")
+        render( json: {} ) and return
+      end
       @user = User.find(params[:user_id])
     end
 
     def show
+      unless (@current_user.id == params[:user_id]) || (@current_user.role.name == "admin")
+        render( json: {} ) and return
+      end
       @purchase = Purchase.find(params[:id])
     end
 
     def create
+      unless (@current_user.id == params[:user_id]) || (@current_user.role.name == "admin")
+        render( json: {} ) and return
+      end
       @user = User.find(params[:user_id])
       @purchase = Purchase.new(user: @user)
       @purchase.save
