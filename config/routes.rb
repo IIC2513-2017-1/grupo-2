@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   delete "/users/:user_id/cart/:id", to: "users#destroy_cart", as: "destroy_cart"
   get "/products/search/", to: "products#search"
   patch "/purchases/:id/confirm", to: "purchases#confirm", as: "confirm_purchase"
+  get "/tweets", to: "tweets#index"
 
   resources :categories
   resources :statistics, only: :index
@@ -20,7 +21,15 @@ Rails.application.routes.draw do
     resources :comments, :except => [:show, :new, :index]
   end
 
-  get "/tweets", to: "tweets#index"
+  namespace :api do
+    namespace :v1 do
+      resources :products, only: [:index, :show, :create, :update, :destroy]
+      resources :users, only: [:show] do
+        resources :carts, only: [:index, :show, :create, :destroy]
+        resources :purchases, only: [:index, :show, :create]
+      end
+    end
+  end
 
   root to: "home#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

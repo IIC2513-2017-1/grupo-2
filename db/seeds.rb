@@ -18,6 +18,7 @@ Category.destroy_all
 admin = User.new(username: "admin", email: "amazing.noreply@gmail.com", password: "administrator", password_confirmation: "administrator", email_confirmed: true)
 admin.role = Role.find_by_name("admin")
 admin.save
+admin.generate_token_and_save
 
 # Users
 10.times do
@@ -25,7 +26,8 @@ admin.save
   email = Faker::Internet.email(username)
   password = Faker::Internet.password(8)
   avatar = open(Faker::Avatar.image)
-  User.create(username: username, email: email, password: password, password_confirmation: password, avatar: avatar)
+  u = User.create(username: username, email: email, password: password, password_confirmation: password, avatar: avatar)
+  u.generate_token_and_save
 end
 
 # Categories

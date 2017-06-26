@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   validates :username, presence: true
   validates :username, :email, uniqueness: true
-  validates :password, length: {in: 6..20}, confirmation: true
+  validates :password, length: {in: 6..20}, confirmation: true, presence: {on: :create}, allow_blank: {on: :update}
   validates :email, presence: true, format: {with: /[\S]+@[\S]+\.[\S]+/}
 
 
@@ -26,7 +26,15 @@ class User < ApplicationRecord
     save!(:validate => false)
   end
 
+  def generate_token_and_save
+    loop do
+      self.token = SecureRandom.hex(64)
+      break if save
+    end
+  end
+
   private
+
   def set_default_role
     self.role ||= Role.find_by_name('user')
   end
