@@ -21,13 +21,13 @@
         <% end %>
       </div>
 
-      <div class="logo">
-        <%= link_to tweets_path do %>
-          <%= image_tag "bird.png" %>
-        <% end %>
-      </div>
-
       <nav id="main-menu">
+        <div class="menu-item">
+          <%= link_to tweets_path do %>
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+            <span><strong>Tweets</strong></span>
+          <% end %>
+        </div>
         <% if current_user && current_user.role.name == "admin" %>
           <div class="menu-item">
             <%= link_to users_path do %>
