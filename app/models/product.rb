@@ -33,7 +33,7 @@ class Product < ApplicationRecord
   end
 
   def current_price
-    price - (price * offer / 100)
+    [price - (price * offer / 100), 1].max
   end
 
 end
