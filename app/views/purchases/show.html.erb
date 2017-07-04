@@ -7,13 +7,13 @@
     <% else %>
       Pending...
     <% end %>
-    <% if @purchase.payment_confirmed %>
+    <% if current_user && current_user.role.name == "admin" && @purchase.payment_confirmed %>
       <td class="actions">
         <%= link_to confirm_purchase_path(@purchase), method: :patch, class: "confirm-payment", data: { confirm: 'Are you sure?' } do %>
           <i class="fa fa-times" aria-hidden="true"></i>
         <% end %>
       </td>
-    <% else %>
+    <% elsif current_user && current_user.role.name == "admin" %>
       <td class="actions">
         <%= link_to confirm_purchase_path(@purchase), method: :patch, class: "confirm-payment", data: { confirm: 'Are you sure?' } do %>
           <i class="fa fa-check" aria-hidden="true"></i>
